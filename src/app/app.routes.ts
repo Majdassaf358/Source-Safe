@@ -3,6 +3,11 @@ import { LoginComponent } from './components/authentication/login/login.componen
 
 export const routes: Routes = [
     {
+        path:'',
+        redirectTo:'login',
+        pathMatch:'full',
+    },
+    {
         path: 'login',
         component:LoginComponent,
     },
