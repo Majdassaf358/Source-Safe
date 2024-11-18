@@ -6,6 +6,6 @@
             <input class="input-field" type="text" placeholder="password" [(ngModel)]="loginReq.password">
             <input class="input-field" type="text" placeholder="password_confirmation" [(ngModel)]="loginReq.password_confirmation">
         </div>
-        <button class="Login-button"></button>
+        <button class="login-button" (click)="sendFields(loginReq)"></button>
     </div>
 </div>

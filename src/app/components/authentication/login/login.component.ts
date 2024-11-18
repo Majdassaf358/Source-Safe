@@ -17,14 +17,19 @@ import { ApiResponse } from '../../../models/ApiResponse';
 })
 export class LoginComponent {
   
-  loginReq!:authenticationReq;
+  loginReq:authenticationReq = new authenticationReq;
 
   constructor(private authenticationService:AuthenticationService) {}
+
+  sendFields(request:authenticationReq){
+    this.loginFunction(request);
+  }
 
   async loginFunction(request:authenticationReq){
     try{
       let res:ApiResponse<authenticationRes> = await lastValueFrom(this.authenticationService.login(request));
       this.loginReq = res.data;
+      console.log('true')
     }
     catch(error){
       console.log(error);
