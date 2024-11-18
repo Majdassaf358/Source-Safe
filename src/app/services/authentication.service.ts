@@ -13,9 +13,8 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  public login(request:authenticationReq): Observable<ApiResponse<authenticationRes>>{
+  public login(request: authenticationReq): Observable<ApiResponse<authenticationRes>> {
     let url = `${environment.apiUrl}/register`;
-    return this.http.post<ApiResponse<authenticationRes>>(url,request);
+    return this.http.post<ApiResponse<authenticationRes>>(url, request);
   }
-
 }
