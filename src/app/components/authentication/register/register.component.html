@@ -2,10 +2,10 @@
     <div class="register-card">
         <div class="username-field">
             <input class="input-field" type="text" placeholder="Username" [(ngModel)]="registerReq.username">
-            <input class="input-field" type="text" placeholder="email" [(ngModel)]="registerReq.email">
-            <input class="input-field" type="text" placeholder="password" [(ngModel)]="registerReq.password">
-            <input class="input-field" type="text" placeholder="password_confirmation" [(ngModel)]="registerReq.password_confirmation">
+            <input class="input-field" type="email" placeholder="email" [(ngModel)]="registerReq.email">
+            <input class="input-field" type="password" placeholder="password" [(ngModel)]="registerReq.password">
+            <input class="input-field" type="password" placeholder="password_confirmation" [(ngModel)]="registerReq.password_confirmation">
         </div>
-        <button class="register-button" (click)="sendFields(registerReq)"></button>
+        <button class="register-button" (click)="registerFunction(registerReq)"></button>
     </div>
 </div>

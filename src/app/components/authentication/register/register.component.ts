@@ -21,10 +21,6 @@ export class RegisterComponent {
 
   constructor(private authenticationService:AuthenticationService) {}
 
-  sendFields(request:authenticationReq){
-    this.registerFunction(request);
-  }
-
   async registerFunction(request:authenticationReq){
     try{
       let res:ApiResponse<authenticationRes> = await lastValueFrom(this.authenticationService.register(request));
