@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../models/environments';
 import { ApiResponse } from '../models/ApiResponse';
 import { authenticationRes } from '../models/authenticationRes';
+import { login } from '../models/login';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class AuthenticationService {
     let url = `${environment.apiUrl}/register`;
     return this.http.post<ApiResponse<authenticationRes>>(url, request);
   }
-  public login(request: authenticationReq): Observable<ApiResponse<authenticationRes>> {
+  public login(req:login): Observable<ApiResponse<authenticationRes>> {
     let url = `${environment.apiUrl}/login`;
-    return this.http.post<ApiResponse<authenticationRes>>(url, request);
+    return this.http.post<ApiResponse<authenticationRes>>(url, req);
   }
 }
