@@ -7,7 +7,7 @@ export class DarkService {
   constructor() {}
 
   changeMode(mode: boolean) {
-    if (mode == true) {
+    if (mode == false) {
       const links = document.querySelectorAll('link[rel="stylesheet"]');
       links.forEach((link) => {
         if (link.getAttribute('href') === 'assets/dark.css') {

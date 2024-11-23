@@ -7,7 +7,8 @@
             type="checkbox"
             id="dark-mode-toggle"
             class="dark-button"
-            (click)="darkMode(mode)"
+            [ngClass]="mode ? 'dark-active' : ''"
+            (click)="changeMode()"
           />
           <label for="dark-mode-toggle" class="toggle-dark"></label>
         </li>

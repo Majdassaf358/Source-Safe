@@ -34,6 +34,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.language = localStorage.getItem('language') || 'en';
+    const modeState = localStorage.getItem('mode');
+    this.mode = modeState ? JSON.parse(modeState) : false;
     this.changeLan(this.language);
   }
   changeLan(lang: any) {
@@ -49,5 +51,9 @@ export class NavbarComponent implements OnInit {
     this.directionService.toggleExternalStyles(lang);
   }
 
-  darkMode(mode: boolean) {}
+  changeMode(): void {
+    this.mode = !this.mode;
+    localStorage.setItem('mode', JSON.stringify(this.mode));
+    this.darkService.changeMode(this.mode);
+  }
 }
