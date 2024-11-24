@@ -23,7 +23,8 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
-  loginReq: authenticationReq = new authenticationReq();
+  loginReq: authenticationRes = new authenticationRes();
+  token: string = '';
   loginForm!: FormGroup;
   constructor(
     private authenticationService: AuthenticationService,
@@ -48,7 +49,8 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(req)
       );
       this.loginReq = res.data;
-      console.log('true');
+      this.token = res.data.token || '';
+      localStorage.setItem('Token', this.token);
       this.router.navigate(['/groups']);
     } catch (error) {
       console.log(error);
