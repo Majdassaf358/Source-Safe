@@ -1,12 +1,86 @@
-<div class="login">
-    <div class="login-card">
-        <h1 class="title">{{'Login' | translate}}</h1>
-        <form class="username-field" [formGroup]="loginForm">
-            <input class="field" type="text" placeholder="email" formControlName="email">
-            <input class="field" type="text" placeholder="password" formControlName="password">
-        </form>
-        <button type="submit" class="btn btn-primary btn-block btn-large zr" (click)="loginFunction()">{{'Let me in' | translate}}.</button>
+<!-- <div class="login">
+  <div class="login-card">
+  <h1 class="title">{{ "Login" | translate }}</h1>
+  <form class="username-field" [formGroup]="loginForm">
+    <input
+      class="field"
+      type="text"
+      placeholder="email"
+      formControlName="email"
+    />
+    <input
+      class="field"
+      type="text"
+      placeholder="password"
+      formControlName="password"
+    />
+  </form>
+  <button
+    type="submit"
+    class="btn btn-primary btn-block btn-large zr"
+    (click)="loginFunction()"
+  >
+    {{ "Let me in" | translate }}.
+  </button>
+  </div>
+</div> -->
+
+<!-- <div class="container login-container">
+  <div class="login-card">
+    <div class="login">
+      <form method="post" [formGroup]="loginForm">
+        <h1>Login</h1>
+        <input
+          type="text"
+          name="u"
+          placeholder="Email"
+          formControlName="email"
+        />
+        <input
+          type="password"
+          name="p"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <button
+          (click)="loginFunction()"
+          class="btn btn-primary btn-block btn-large login-button"
+        >
+          Let me in.
+        </button>
+      </form>
     </div>
+  </div>
+</div> -->
+
+<div class="login-container">
+  <div class="row col-5">
+    <form class="login-form" [formGroup]="loginForm">
+      <h3 class="login-h3">Welcome</h3>
+      <div class="flex-row">
+        <label class="label bi bi-person" for="username"></label>
+        <input
+          class="input"
+          placeholder="Email"
+          type="email"
+          formControlName="email"
+          name="email"
+        />
+      </div>
+      <div class="flex-row">
+        <label class="label bi bi-key" for="password"></label>
+        <input
+          class="input"
+          placeholder="Password"
+          type="password"
+          formControlName="email"
+          name="password"
+        />
+      </div>
+      <button class="submit" type="button" (click)="loginFunction()">
+        LOGIN
+      </button>
+    </form>
+    <!-- <a class="forgot" href="#">Forgot password?</a> -->
+  </div>
 </div>
-
-
