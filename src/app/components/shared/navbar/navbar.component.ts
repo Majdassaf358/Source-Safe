@@ -33,27 +33,27 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.language = localStorage.getItem('language') || 'en';
-    const modeState = localStorage.getItem('mode');
-    this.mode = modeState ? JSON.parse(modeState) : false;
-    this.changeLan(this.language);
+    // this.language = localStorage.getItem('language') || 'en';
+    // const modeState = localStorage.getItem('mode');
+    // this.mode = modeState ? JSON.parse(modeState) : false;
+    // this.changeLan(this.language);
   }
-  changeLan(lang: any) {
-    if (lang == 'en') {
-      this.selectedFlag = 'assets/img/united-kingdom.png';
-      this.selectedlang = 'English';
-    } else {
-      this.selectedFlag = 'assets/img/syria.png';
-      this.selectedlang = 'Arabic';
-    }
-    localStorage.setItem('language', lang);
-    this.translateService.use(lang);
-    this.directionService.toggleExternalStyles(lang);
-  }
+  // changeLan(lang: any) {
+  //   if (lang == 'en') {
+  //     this.selectedFlag = 'assets/img/united-kingdom.png';
+  //     this.selectedlang = 'English';
+  //   } else {
+  //     this.selectedFlag = 'assets/img/syria.png';
+  //     this.selectedlang = 'Arabic';
+  //   }
+  //   localStorage.setItem('language', lang);
+  //   this.translateService.use(lang);
+  //   this.directionService.toggleExternalStyles(lang);
+  // }
 
-  changeMode(): void {
-    this.mode = !this.mode;
-    localStorage.setItem('mode', JSON.stringify(this.mode));
-    this.darkService.changeMode(this.mode);
-  }
+  // changeMode(): void {
+  //   this.mode = !this.mode;
+  //   localStorage.setItem('mode', JSON.stringify(this.mode));
+  //   this.darkService.changeMode(this.mode);
+  // }
 }

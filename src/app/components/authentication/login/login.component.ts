@@ -1,49 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { authenticationReq } from '../../../models/authenticationReq';
-import {lastValueFrom} from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { authenticationRes } from '../../../models/authenticationRes';
 import { ApiResponse } from '../../../models/ApiResponse';
 import { login } from '../../../models/login';
 import { TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,
-    ReactiveFormsModule,
-    TranslateModule
-  ],
+  imports: [FormsModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
-  
-  loginReq:authenticationReq = new authenticationReq;
+  loginReq: authenticationReq = new authenticationReq();
   loginForm!: FormGroup;
-  constructor(private authenticationService:AuthenticationService,
-    private fb: FormBuilder) {}
-    ngOnInit(): void {
-      this.loginForm = this.fb.group(
-        {
-          email: ['',Validators.required],
-          password: ['',Validators.required],
-        })
-    }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
-  test(){
+  test() {
     console.log('form:', this.loginForm);
   }
 
-  async loginFunction(){
+  async loginFunction() {
     var req: login = this.loginForm.getRawValue();
-    try{
-      let res:ApiResponse<authenticationRes>  = await lastValueFrom(this.authenticationService.login(req));
+    try {
+      let res: ApiResponse<authenticationRes> = await lastValueFrom(
+        this.authenticationService.login(req)
+      );
       this.loginReq = res.data;
-      console.log('true')
-    }
-    catch(error){
+      console.log('true');
+      this.router.navigate(['/groups']);
+    } catch (error) {
       console.log(error);
     }
   }

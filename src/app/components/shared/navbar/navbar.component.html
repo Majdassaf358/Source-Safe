@@ -8,33 +8,28 @@
             id="dark-mode-toggle"
             class="dark-button"
             [ngClass]="mode ? 'dark-active' : ''"
-            (click)="changeMode()"
           />
           <label for="dark-mode-toggle" class="toggle-dark"></label>
         </li>
         <li>
           <div class="flags-list">
             <div class="flag-language">
-              <img
+              <!-- <img
                 class="top-flag"
                 src="{{ selectedFlag }}"
                 (change)="changeLan($event)"
-              />
+              /> -->
             </div>
             <div class="selected-language">
               {{ "navBar." + selectedlang | translate }}
             </div>
             <ul>
               <li class="the-list">
-                <div
-                  class="display-flex"
-                  *ngFor="let flag of flags"
-                  (click)="changeLan(flag.lang)"
-                >
+                <div class="display-flex">
                   <div class="flag-language">
-                    <img class="list-flags" src="{{ flag.src }}" />
+                    <!-- <img class="list-flags" src="{{ flag.src }}" /> -->
                   </div>
-                  <a>{{ "navBar." + flag.language | translate }}</a>
+                  <!-- <a>{{ "navBar." + flag.language | translate }}</a> -->
                 </div>
               </li>
             </ul>
