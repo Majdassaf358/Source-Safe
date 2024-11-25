@@ -1,37 +1,37 @@
-<div class="login-container">
-  <div class="col-5">
-    <form class="login-form" [formGroup]="loginForm">
-      <h3 class="screen-h3">Welcome back</h3>
-      <div class="flex-row">
-        <label class="label">
-          <i class="fas fa-user"></i>
-          <!-- أيقونة المستخدم -->
-        </label>
-        <input
-          class="input"
-          placeholder="Email"
-          type="email"
-          formControlName="email"
-          name="email"
-        />
-      </div>
-      <div class="flex-row">
-        <label class="label">
-          <i class="fas fa-key"></i>
-          <!-- أيقونة كلمة المرور -->
-        </label>
-        <input
-          class="input"
-          placeholder="Password"
-          type="password"
-          formControlName="password"
-          name="password"
-        />
-      </div>
-      <button class="submit" type="button" (click)="loginFunction()">
-        LOGIN
-      </button>
-      <p>Don't have an account? <a href="/sugnup">SignUp here</a></p>
-    </form>
+<div class="main-container">
+  <div class="login-container">
+    <div class="col-5">
+      <form class="login-form" [formGroup]="loginForm">
+        <h3 class="screen-h3">Welcome back</h3>
+        <div class="flex-row">
+          <label class="label">
+            <i class="fas fa-user"></i>
+          </label>
+          <input
+            class="input"
+            placeholder="Email"
+            type="email"
+            formControlName="email"
+            name="email"
+          />
+        </div>
+        <div class="flex-row">
+          <label class="label">
+            <i class="fas fa-key"></i>
+          </label>
+          <input
+            class="input"
+            placeholder="Password"
+            type="password"
+            formControlName="password"
+            name="password"
+          />
+        </div>
+        <button class="submit" type="button" (click)="loginFunction()">
+          LOGIN
+        </button>
+        <p>Don't have an account? <a href="/sugnup">SignUp here</a></p>
+      </form>
+    </div>
   </div>
 </div>

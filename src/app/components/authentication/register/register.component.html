@@ -1,59 +1,61 @@
-<div class="container">
-  <div class="col-5">
-    <form class="signup-form" [formGroup]="registerForm">
-      <h3 class="screen-h3">Create an Account</h3>
-      <div class="flex-row">
-        <label class="label">
-          <i class="fas fa-user"></i>
-        </label>
-        <input
-          class="input"
-          placeholder="Name"
-          type="text"
-          formControlName="username"
-          name="name"
-        />
-      </div>
-      <div class="flex-row">
-        <label class="label">
-          <i class="fas fa-envelope"></i>
-        </label>
-        <input
-          class="input"
-          placeholder="Email"
-          type="email"
-          formControlName="email"
-          name="email"
-        />
-      </div>
-      <div class="flex-row">
-        <label class="label">
-          <i class="fas fa-key"></i>
-        </label>
-        <input
-          class="input"
-          placeholder="Password"
-          type="password"
-          formControlName="password"
-          name="password"
-        />
-      </div>
-      <div class="flex-row">
-        <label class="label">
-          <i class="fas fa-key"></i>
-        </label>
-        <input
-          class="input"
-          placeholder="Confirm Password"
-          type="password"
-          formControlName="password_confirmation"
-          name="confirmPassword"
-        />
-      </div>
-      <button class="submit" type="button" (click)="registerFunction()">
-        SIGN UP
-      </button>
-      <p>You have an account? <a href="/login">login here</a></p>
-    </form>
+<div class="main-container">
+  <div class="container">
+    <div class="col-5">
+      <form class="signup-form" [formGroup]="registerForm">
+        <h3 class="screen-h3">Create an Account</h3>
+        <div class="flex-row">
+          <label class="label">
+            <i class="fas fa-user"></i>
+          </label>
+          <input
+            class="input"
+            placeholder="Name"
+            type="text"
+            formControlName="username"
+            name="name"
+          />
+        </div>
+        <div class="flex-row">
+          <label class="label">
+            <i class="fas fa-envelope"></i>
+          </label>
+          <input
+            class="input"
+            placeholder="Email"
+            type="email"
+            formControlName="email"
+            name="email"
+          />
+        </div>
+        <div class="flex-row">
+          <label class="label">
+            <i class="fas fa-key"></i>
+          </label>
+          <input
+            class="input"
+            placeholder="Password"
+            type="password"
+            formControlName="password"
+            name="password"
+          />
+        </div>
+        <div class="flex-row">
+          <label class="label">
+            <i class="fas fa-key"></i>
+          </label>
+          <input
+            class="input"
+            placeholder="Confirm Password"
+            type="password"
+            formControlName="password_confirmation"
+            name="confirmPassword"
+          />
+        </div>
+        <button class="submit" type="button" (click)="registerFunction()">
+          SIGN UP
+        </button>
+        <p>You have an account? <a href="/login">login here</a></p>
+      </form>
+    </div>
   </div>
 </div>
