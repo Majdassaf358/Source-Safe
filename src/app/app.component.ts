@@ -27,9 +27,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.diectionService.toggleExternalStyles(
-      localStorage.getItem('language') || 'en'
-    );
+    // this.diectionService.toggleExternalStyles(
+    //   localStorage.getItem('language') || 'en'
+    // );
     this.darkservice.changeMode(this.mode);
   }
   title = 'Source_Safe';

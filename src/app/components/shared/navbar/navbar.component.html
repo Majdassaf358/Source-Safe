@@ -6,13 +6,22 @@
     <input type="checkbox" id="check" />
     <span class="menu">
       <li>
-        <input type="checkbox" id="dark-mode-toggle" class="dark-button" />
+        <input
+          type="checkbox"
+          id="dark-mode-toggle"
+          class="dark-button"
+          [ngClass]="mode ? 'dark-active' : ''"
+          (click)="changeMode()"
+        />
         <label for="dark-mode-toggle" class="toggle-dark"></label>
       </li>
       <li>
         <div>
           <div>
-            <img class="top-flag" src="assets/img/syria.png" alt="" />
+            <img class="top-flag" src="{{ selectedFlag }}" alt="" />
+          </div>
+          <div class="selected-language" (change)="changeLan($event)">
+            {{ selectedlang }}
           </div>
           <div></div>
         </div>

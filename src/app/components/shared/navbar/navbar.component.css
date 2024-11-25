@@ -93,13 +93,12 @@
   background: #000000;
   color: #fff;
   cursor: pointer;
-}
-.dark-button {
   position: absolute;
   opacity: 0;
 }
 
 .dark-button + .toggle-dark {
+  margin: 10px 10px 5px 5px;
   outline: 1px solid #002a2a;
   transform: scale(1, 1);
   transition: outline 0.25s ease, transform 0.15s ease;
@@ -152,7 +151,7 @@
   transition: transform 0.35s ease;
 }
 
-.dark-button:checked + .toggle-dark::after {
+.dark-active + .toggle-dark::after {
   transform: translate(-100%, -50%) scale(5);
 }
 .top-flag {

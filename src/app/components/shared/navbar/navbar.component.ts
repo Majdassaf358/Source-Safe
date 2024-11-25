@@ -32,5 +32,25 @@ export class NavbarComponent implements OnInit {
     private darkService: DarkService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const modeState = localStorage.getItem('mode');
+    this.mode = modeState ? JSON.parse(modeState) : false;
+  }
+
+  changeMode(): void {
+    this.mode = !this.mode;
+    localStorage.setItem('mode', JSON.stringify(this.mode));
+    this.darkService.changeMode(this.mode);
+  }
+
+  changeLan(lang: any) {
+    if (lang == 'en') {
+      this.selectedFlag = 'assets/img/united-kingdom.png';
+      this.selectedlang = 'English';
+    } else {
+      this.selectedFlag = 'assets/img/syria.png';
+      this.selectedlang = 'Arabic';
+    }
+    localStorage.setItem('language', lang);
+  }
 }

@@ -10,7 +10,7 @@ export class DarkService {
     if (mode == false) {
       const links = document.querySelectorAll('link[rel="stylesheet"]');
       links.forEach((link) => {
-        if (link.getAttribute('href') === 'assets/dark.css') {
+        if (link.getAttribute('href') === 'assets/css/dark.css') {
           link.remove();
         }
       });
@@ -18,7 +18,7 @@ export class DarkService {
       const linkElement = document.createElement('link');
       linkElement.setAttribute('rel', 'stylesheet');
       linkElement.setAttribute('type', 'text/css');
-      linkElement.setAttribute('href', 'assets/dark.css');
+      linkElement.setAttribute('href', 'assets/css/dark.css');
       document.head.appendChild(linkElement);
     }
   }
