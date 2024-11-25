@@ -155,3 +155,9 @@
 .dark-button:checked + .toggle-dark::after {
   transform: translate(-100%, -50%) scale(5);
 }
+.top-flag {
+  margin-left: 6px;
+  margin-top: 18px;
+  width: 35px;
+  height: 35px;
+}
