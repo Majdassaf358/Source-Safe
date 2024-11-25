@@ -38,10 +38,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  test() {
-    console.log('form:', this.loginForm);
-  }
-
   async loginFunction() {
     var req: login = this.loginForm.getRawValue();
     try {
