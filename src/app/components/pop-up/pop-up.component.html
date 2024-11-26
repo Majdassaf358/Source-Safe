@@ -1,3 +1,32 @@
-<div *ngIf="showSide" class="side-warehouses-bg" (click)="removeSideDisplay()">
-  <div class="side-warehouses-display" (click)="$event.stopPropagation()"></div>
+<div *ngIf="show" class="side-warehouses-bg" (click)="removeSideDisplay()">
+  <div class="side-warehouses-display" (click)="$event.stopPropagation()">
+    <ng-container *ngIf="display == 'upload'">
+      <div class="upload">
+        <div class="create-group-container">
+          <h1>Upload File</h1>
+          <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload" id="fileToUpload" />
+            <button type="submit" class="upload-btn">upload file</button>
+          </form>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="display == 'create'">
+      <div class="create-group-container">
+        <h1>Create Group</h1>
+        <form>
+          <label for="groupName">Group Name: </label>
+          <input type="text" [(ngModel)]="testt" />
+          <button
+            type="submit"
+            class="upload-btn"
+            (click)="crateGroupFunction(testt)"
+          >
+            Create Group
+          </button>
+        </form>
+      </div>
+    </ng-container>
+  </div>
 </div>

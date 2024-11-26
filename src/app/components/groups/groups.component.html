@@ -1,1 +1,47 @@
-<p>groups works!</p>
+<app-pop-up [show]="showPopUp" [display]="display"> </app-pop-up>
+<div class="group-container">
+  <h1 class="title">Groups</h1>
+  <div class="table-container">
+    <table class="groups-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Group Name</th>
+          <th>Admin</th>
+          <th>Members</th>
+          <th>Files</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="groups-table-body">
+        <tr *ngFor="let x of groups">
+          <td>{{ x.id }}</td>
+          <td>{{ x.name }}</td>
+          <td>{{ x.admin?.username }}</td>
+          <td>{{ x.numberOfMembers }}</td>
+          <td>{{ x.numberOfFiles }}</td>
+          <td>
+            <button class="details-button">Show Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination">
+    <button id="prev-btn" class="pagination-btn" disabled>Previous</button>
+    <span id="page-info"></span>
+    <button id="next-btn" class="pagination-btn" disabled>Next</button>
+  </div>
+</div>
+<button
+  class="pagination-btn upload-button"
+  (click)="openPopUpUpload(); $event.stopPropagation()"
+>
+  upload file
+</button>
+<button
+  class="pagination-btn create-button"
+  (click)="openPopUpCreate(); $event.stopPropagation()"
+>
+  create group
+</button>

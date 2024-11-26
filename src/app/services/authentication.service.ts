@@ -8,17 +8,18 @@ import { authenticationRes } from '../models/authenticationRes';
 import { login } from '../models/login';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  public register(request: authenticationReq): Observable<ApiResponse<authenticationRes>> {
+  public register(
+    request: authenticationReq
+  ): Observable<ApiResponse<authenticationRes>> {
     let url = `${environment.apiUrl}/register`;
     return this.http.post<ApiResponse<authenticationRes>>(url, request);
   }
-  public login(req:login): Observable<ApiResponse<authenticationRes>> {
+  public login(req: login): Observable<ApiResponse<authenticationRes>> {
     let url = `${environment.apiUrl}/login`;
     return this.http.post<ApiResponse<authenticationRes>>(url, req);
   }
