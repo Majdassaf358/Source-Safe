@@ -11,7 +11,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 @Component({
   selector: 'app-groups',
   standalone: true,
-  imports: [PopUpComponent, FormsModule, CommonModule, NavbarComponent],
+  imports: [PopUpComponent, FormsModule, CommonModule],
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.css',
 })

@@ -25,12 +25,10 @@ export class PopUpComponent implements OnChanges {
   @Input() display?: string;
 
   groupForm!: FormGroup;
-  testt: string = '1';
+  groupName: string = '';
 
   constructor(private fb: FormBuilder, private groupService: GroupsService) {}
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges - testt:', this.testt);
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 
   removeSideDisplay() {
     this.show = false;
@@ -40,22 +38,16 @@ export class PopUpComponent implements OnChanges {
       name: ['', Validators.required],
     });
   }
-  testtt() {
-    console.log(this.testt);
-  }
   initializeMember() {}
 
   // crateGroupAll() {
   //   this.initializeGroups();
   //   this.crateGroupFunction();
   // }
-  async crateGroupFunction(name: string) {
-    // const group: groupReq = this.groupForm.getRawValue();
-    // console.log(group);
-
+  async crateGroupFunction() {
     try {
       let res: ApiResponse<groupRes> = await lastValueFrom(
-        this.groupService.createGroup(name)
+        this.groupService.createGroup(this.groupName)
       );
       console.log(res.message);
       this.show = false;

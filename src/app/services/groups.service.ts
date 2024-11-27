@@ -21,6 +21,6 @@ export class GroupsService {
 
   public createGroup(name: string): Observable<ApiResponse<groupRes>> {
     let url = `${environment.apiUrl}/create-group`;
-    return this.http.post<ApiResponse<groupRes>>(url, name);
+    return this.http.post<ApiResponse<groupRes>>(url, { name: name });
   }
 }
