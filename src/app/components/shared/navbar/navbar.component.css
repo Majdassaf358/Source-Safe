@@ -160,3 +160,14 @@
   width: 35px;
   height: 35px;
 }
+
+.profile {
+  margin: 1em;
+  width: 40%;
+}
+
+.profile-img {
+  width: 45%;
+  border-radius: 30px;
+  cursor: pointer;
+}

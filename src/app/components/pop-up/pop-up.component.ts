@@ -11,6 +11,7 @@ import { groupReq } from '../../models/groupReq';
 import { groupRes } from '../../models/groupRes';
 import { ApiResponse } from '../../models/ApiResponse';
 import { GroupsService } from '../../services/groups.service';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
@@ -27,7 +28,11 @@ export class PopUpComponent implements OnChanges {
   groupForm!: FormGroup;
   groupName: string = '';
 
-  constructor(private fb: FormBuilder, private groupService: GroupsService) {}
+  constructor(
+    private fb: FormBuilder,
+    private groupService: GroupsService,
+    private router: Router
+  ) {}
   ngOnChanges(changes: SimpleChanges) {}
 
   removeSideDisplay() {

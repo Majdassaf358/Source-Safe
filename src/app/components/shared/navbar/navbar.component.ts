@@ -4,6 +4,7 @@ import { DirectionService } from '../../../services/direction.service';
 import { DarkService } from '../../../services/dark.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -29,7 +30,8 @@ export class NavbarComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private directionService: DirectionService,
-    private darkService: DarkService
+    private darkService: DarkService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,5 +54,9 @@ export class NavbarComponent implements OnInit {
       this.selectedlang = 'Arabic';
     }
     localStorage.setItem('language', lang);
+  }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
   }
 }
