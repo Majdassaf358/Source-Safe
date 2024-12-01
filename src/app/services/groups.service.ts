@@ -5,7 +5,7 @@ import { environment } from '../models/environments';
 import { ApiResponse } from '../models/ApiResponse';
 import { groupReq } from '../models/groupReq';
 import { groupRes } from '../models/groupRes';
-import { temporaryy } from '../models/temporary';
+import { APIarray } from '../models/APIarray';
 import { viewgroup } from '../models/viewgroup';
 
 @Injectable({
@@ -14,9 +14,9 @@ import { viewgroup } from '../models/viewgroup';
 export class GroupsService {
   constructor(private http: HttpClient) {}
 
-  public getGroups(): Observable<temporaryy<viewgroup>> {
+  public getGroups(): Observable<APIarray<viewgroup>> {
     let url = `${environment.apiUrl}/view-groups`;
-    return this.http.get<temporaryy<viewgroup>>(url);
+    return this.http.get<APIarray<viewgroup>>(url);
   }
 
   public createGroup(name: string): Observable<ApiResponse<groupRes>> {

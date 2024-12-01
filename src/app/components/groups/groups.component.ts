@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopUpComponent } from '../pop-up/pop-up.component';
-import { temporaryy } from '../../models/temporary';
+import { APIarray } from '../../models/APIarray';
 import { viewgroup } from '../../models/viewgroup';
 import { lastValueFrom } from 'rxjs';
 import { GroupsService } from '../../services/groups.service';
@@ -34,7 +34,7 @@ export class GroupsComponent implements OnInit {
 
   async getGroups() {
     try {
-      let res: temporaryy<viewgroup> = await lastValueFrom(
+      let res: APIarray<viewgroup> = await lastValueFrom(
         this.groupService.getGroups()
       );
       this.groups = res.data;
