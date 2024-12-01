@@ -38,6 +38,16 @@ export class PopUpComponent implements OnChanges {
   removeSideDisplay() {
     this.show = false;
   }
+
+  async onChangeFile(event: any) {
+    try {
+      const file = event.target.files;
+      const formData = new FormData();
+      formData.append('file', file);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   initializeGroups() {
     this.groupForm = this.fb.group({
       name: ['', Validators.required],

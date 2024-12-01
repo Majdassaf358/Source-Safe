@@ -1,4 +1,4 @@
-export class temporaryy<T> {
+export class APIarray<T> {
   'status': string;
   'message': string;
   'data': T[];

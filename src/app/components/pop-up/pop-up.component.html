@@ -5,7 +5,12 @@
         <div class="create-group-container">
           <h1>Upload File</h1>
           <form action="upload.php" method="POST" enctype="multipart/form-data">
-            <input type="file" name="fileToUpload" id="fileToUpload" />
+            <input
+              type="file"
+              name="fileToUpload"
+              id="fileToUpload"
+              (change)="onChangeFile($event)"
+            />
             <button type="submit" class="upload-btn">upload file</button>
           </form>
         </div>
