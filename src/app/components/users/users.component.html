@@ -8,12 +8,18 @@
           <th>ID</th>
           <th>Username</th>
           <th>Email</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody id="user-table-body">
-        <td>"userid"</td>
-        <td>"userusername"</td>
-        <td>"useremail"</td>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button class="details-button">Show Profile</button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
