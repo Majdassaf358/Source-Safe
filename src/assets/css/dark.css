@@ -221,7 +221,9 @@ body {
 .user-table tbody tr:nth-child(odd) {
   background-color: #1a1a1a !important; /* Slightly lighter row color */
 }
-
+.user-table tbody tr:nth-child(even) {
+  background-color: #2a2a2a !important;
+}
 .user-table tbody tr:hover {
   background-color: #333333 !important; /* Highlight row on hover */
 }

@@ -1,14 +1,14 @@
 /* General Styles */
-body {
+/* body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   color: #333;
-}
+} */
 
 /* Container */
 .group-container {
-  max-width: 900px;
+  max-width: 70%;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;

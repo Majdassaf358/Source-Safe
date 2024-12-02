@@ -52,6 +52,22 @@
   background-color: #ccebe9;
 }
 
+/* Button */
+.details-button {
+  padding: 8px 12px;
+  background-color: #00b2a9;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+  background-color: #007973;
+}
+
 /* Pagination */
 .user-pagination {
   display: flex;
