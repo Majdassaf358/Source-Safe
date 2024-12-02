@@ -1,1 +1,25 @@
-<p>users works!</p>
+<app-pop-up [show]="showPopUp" [display]="display"> </app-pop-up>
+<div class="user-container">
+  <h1 class="user-title">Users</h1>
+  <div class="user-table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="user-table-body">
+        <td>"userid"</td>
+        <td>"userusername"</td>
+        <td>"useremail"</td>
+      </tbody>
+    </table>
+  </div>
+  <div class="user-pagination">
+    <button id="prev-btn" class="pagination-button" disabled>Previous</button>
+    <span id="page-info" class="page-info"></span>
+    <button id="next-btn" class="pagination-button">Next</button>
+  </div>
+</div>

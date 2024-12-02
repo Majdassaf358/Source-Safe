@@ -1,11 +1,5 @@
-.nav-bar {
-  /* background-color: white !important; */
-}
-
 .group-container {
-  /* color: #e0e0e0; */
   background-color: #1e1e1e !important;
-  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); */
 }
 
 h1 {
@@ -114,10 +108,6 @@ a {
   color: #8f8f8f;
 }
 
-.container {
-  /* background-color: #1e1e1e; */
-}
-
 h1 {
   color: #00b2a9;
 }
@@ -142,13 +132,6 @@ body {
   background-color: #121212; /* Dark background */
   color: #e0e0e0; /* Light text for contrast */
 }
-
-/* Container */
-.container {
-  /* background-color: #1e1e1e; */
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); */
-}
-
 /* Title */
 .title {
   color: #007973; /* Vibrant color for the title */
@@ -217,4 +200,33 @@ body {
 }
 .upload {
   background-color: #1e1e1e !important;
+}
+
+/* Users */
+
+/* background-color: #121212; Dark background */
+.user-container {
+  background-color: #1e1e1e !important;
+}
+.user-title {
+  color: #00b2a9 !important;
+}
+.user-table {
+  color: #e0e0e0 !important;
+}
+.user-table thead {
+  background-color: #00b2a9 !important;
+}
+
+.user-table tbody tr:nth-child(odd) {
+  background-color: #1a1a1a !important; /* Slightly lighter row color */
+}
+
+.user-table tbody tr:hover {
+  background-color: #333333 !important; /* Highlight row on hover */
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #333 !important;
 }
