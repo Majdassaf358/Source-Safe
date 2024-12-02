@@ -3,6 +3,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { ProfileComponent } from './components/authentication/profile/profile.component';
+import { UsersComponent } from './components/users/users.component';
 
 export const routes: Routes = [
   {
@@ -25,5 +26,9 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
   },
 ];
