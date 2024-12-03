@@ -43,5 +43,18 @@
         </form>
       </div>
     </ng-container>
+
+    <ng-container *ngIf="display == 'invite'">
+      <div class="create-group-container">
+        <h1>Invite to:</h1>
+        <form>
+          <label for="groupName">Group Name: </label>
+          <input type="text" [(ngModel)]="groupName" name="group-name" />
+          <button type="submit" class="upload-btn" (click)="sendInvite()">
+            Invite Users
+          </button>
+        </form>
+      </div>
+    </ng-container>
   </div>
 </div>

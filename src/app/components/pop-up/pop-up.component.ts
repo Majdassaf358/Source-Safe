@@ -16,6 +16,8 @@ import { lastValueFrom } from 'rxjs';
 import { FilesService } from '../../services/files.service';
 import { APIarray } from '../../models/APIarray';
 import { file } from '../../models/file';
+import { invite } from '../../models/invite';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-pop-up',
@@ -27,9 +29,11 @@ import { file } from '../../models/file';
 export class PopUpComponent implements OnChanges {
   @Input() show?: boolean;
   @Input() display?: string;
+  @Input() users_id!: number[];
 
   groupForm!: FormGroup;
   groupName: string = '';
+  inviteInfo: invite[] = [];
 
   // Variable to store shortLink from api response
   shortLink: string = '';
@@ -40,6 +44,7 @@ export class PopUpComponent implements OnChanges {
     private fb: FormBuilder,
     private groupService: GroupsService,
     private filesService: FilesService,
+    private userService: UsersService,
     private router: Router
   ) {}
   ngOnChanges(changes: SimpleChanges) {}
@@ -72,6 +77,16 @@ export class PopUpComponent implements OnChanges {
       );
       console.log(res.message);
       this.show = false;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async sendInvite() {
+    try {
+      let res: APIarray<invite> = await lastValueFrom(
+        this.userService.inviteUser(this.groupName, this.users_id)
+      );
+      this.inviteInfo = res.data;
     } catch (error) {
       console.log(error);
     }

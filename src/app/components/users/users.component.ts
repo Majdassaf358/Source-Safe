@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,11 +18,41 @@ export class UsersComponent implements OnInit {
   showPopUp: boolean = false;
   display: string = '';
   users: viewuser[] = [];
+  selected: boolean[] = [];
+
+  users_id: number[] = [];
+  mode: string = 'default';
+  selectAll: boolean = false;
 
   constructor(private userService: UsersService) {}
 
   ngOnInit(): void {
     this.getUsers();
+  }
+
+  enableSelect() {
+    this.mode = 'select';
+  }
+  desaibleSelect() {
+    this.mode = 'default';
+  }
+  toglleSelectAll() {
+    this.selected = this.users.map(() => this.selectAll);
+    this.updateSelectedUsers();
+    console.log(this.users_id);
+  }
+  checkBoxChanged(i: number) {
+    this.selectAll = this.selected.every((isSelected) => isSelected);
+    this.updateSelectedUsers();
+    console.log(this.users_id);
+  }
+  updateSelectedUsers() {
+    this.users_id = this.users.reduce<number[]>((acc, user, index) => {
+      if (this.selected[index] && typeof user.id === 'number') {
+        acc.push(user.id);
+      }
+      return acc;
+    }, []);
   }
 
   async getUsers() {
@@ -33,6 +63,17 @@ export class UsersComponent implements OnInit {
       this.users = res.data;
     } catch (error) {
       console.log(error);
+    }
+  }
+  openInvite() {
+    this.showPopUp = true;
+    this.display = 'invite';
+  }
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    const targetElement = event.target as Element;
+    if (!targetElement.closest('app-pop-up')) {
+      this.showPopUp = false;
     }
   }
 }

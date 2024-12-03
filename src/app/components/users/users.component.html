@@ -1,6 +1,22 @@
 <app-pop-up [show]="showPopUp" [display]="display"> </app-pop-up>
 <div class="user-container">
-  <h1 class="user-title">Users</h1>
+  <div class="users-header">
+    <h1 class="user-title">Users</h1>
+    <button
+      class="details-button"
+      *ngIf="mode == 'default'"
+      (click)="enableSelect()"
+    >
+      Select
+    </button>
+
+    <input
+      *ngIf="mode == 'select'"
+      type="checkbox"
+      [(ngModel)]="selectAll"
+      (change)="toglleSelectAll()"
+    />
+  </div>
   <div class="user-table-container">
     <table class="user-table">
       <thead>
@@ -12,20 +28,44 @@
         </tr>
       </thead>
       <tbody id="user-table-body">
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users; let i = index">
           <td>{{ user.id }}</td>
           <td>{{ user.username }}</td>
           <td>{{ user.email }}</td>
+          <td *ngIf="mode == 'select'">
+            <input
+              type="checkbox"
+              [(ngModel)]="selected[i]"
+              (change)="checkBoxChanged(i)"
+            />
+          </td>
           <td>
-            <button class="details-button">Show Profile</button>
+            <button class="details-button" *ngIf="mode == 'default'">
+              Show Profile
+            </button>
+            <button
+              class="details-button"
+              *ngIf="mode == 'default'"
+              (click)="openInvite(); $event.stopPropagation()"
+            >
+              Invite
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="user-pagination">
+
+  <!-- <div class="user-pagination">
     <button id="prev-btn" class="pagination-button" disabled>Previous</button>
     <span id="page-info" class="page-info"></span>
     <button id="next-btn" class="pagination-button">Next</button>
-  </div>
+  </div> -->
+  <button
+    class="details-button"
+    *ngIf="mode == 'select'"
+    (click)="desaibleSelect()"
+  >
+    Cancel
+  </button>
 </div>
