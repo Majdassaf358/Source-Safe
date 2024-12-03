@@ -1,16 +1,18 @@
-<app-pop-up [show]="showPopUp" [display]="display"> </app-pop-up>
+<app-pop-up [show]="showPopUp" [display]="display" [users_ids]="users_id">
+</app-pop-up>
 <div class="user-container">
   <div class="users-header">
     <h1 class="user-title">Users</h1>
     <button
-      class="details-button"
+      class="users-buttons"
       *ngIf="mode == 'default'"
       (click)="enableSelect()"
     >
-      Select
+      Invite
     </button>
 
     <input
+      class="users-inputs"
       *ngIf="mode == 'select'"
       type="checkbox"
       [(ngModel)]="selectAll"
@@ -34,22 +36,14 @@
           <td>{{ user.email }}</td>
           <td *ngIf="mode == 'select'">
             <input
+              class="users-inputs"
               type="checkbox"
               [(ngModel)]="selected[i]"
               (change)="checkBoxChanged(i)"
             />
           </td>
-          <td>
-            <button class="details-button" *ngIf="mode == 'default'">
-              Show Profile
-            </button>
-            <button
-              class="details-button"
-              *ngIf="mode == 'default'"
-              (click)="openInvite(); $event.stopPropagation()"
-            >
-              Invite
-            </button>
+          <td *ngIf="mode == 'default'">
+            <button class="details-button">Show Profile</button>
           </td>
         </tr>
       </tbody>
@@ -62,10 +56,17 @@
     <button id="next-btn" class="pagination-button">Next</button>
   </div> -->
   <button
-    class="details-button"
+    class="users-buttons"
     *ngIf="mode == 'select'"
     (click)="desaibleSelect()"
   >
     Cancel
+  </button>
+  <button
+    class="users-buttons"
+    *ngIf="mode == 'select'"
+    (click)="openInvite(); $event.stopPropagation()"
+  >
+    Invite
   </button>
 </div>

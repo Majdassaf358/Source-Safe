@@ -29,7 +29,7 @@ import { UsersService } from '../../services/users.service';
 export class PopUpComponent implements OnChanges {
   @Input() show?: boolean;
   @Input() display?: string;
-  @Input() users_id!: number[];
+  @Input() users_ids!: number[];
 
   groupForm!: FormGroup;
   groupName: string = '';
@@ -84,7 +84,7 @@ export class PopUpComponent implements OnChanges {
   async sendInvite() {
     try {
       let res: APIarray<invite> = await lastValueFrom(
-        this.userService.inviteUser(this.groupName, this.users_id)
+        this.userService.inviteUser(this.groupName, this.users_ids)
       );
       this.inviteInfo = res.data;
     } catch (error) {

@@ -61,7 +61,7 @@
 /* Button */
 .details-button {
   padding: 0.8em 1em;
-  margin: 0 1em;
+  margin: 0.5em 1em;
   background-color: #00b2a9;
   border: none;
   border-radius: 4px;
@@ -73,6 +73,25 @@
 
 .details-button:hover {
   background-color: #007973;
+}
+
+.users-buttons {
+  width: 7%;
+  padding: 0.8em 1em;
+  margin: 2em 0.8em;
+  background-color: #00b2a9;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+.users-buttons:hover {
+  background-color: #007973;
+}
+.users-inputs {
+  width: 10%;
 }
 
 /* Pagination */

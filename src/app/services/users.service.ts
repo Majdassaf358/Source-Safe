@@ -18,9 +18,9 @@ export class UsersService {
   }
   public inviteUser(
     groupName: string,
-    userId: number[]
+    users_id: number[]
   ): Observable<APIarray<invite>> {
     let url = `${environment.apiUrl}/${groupName}/invite-users`;
-    return this.http.post<APIarray<invite>>(url, { userId });
+    return this.http.post<APIarray<invite>>(url, { users_id });
   }
 }
