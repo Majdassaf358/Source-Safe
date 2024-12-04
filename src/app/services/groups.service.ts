@@ -18,6 +18,14 @@ export class GroupsService {
     let url = `${environment.apiUrl}/view-groups`;
     return this.http.get<APIarray<viewgroup>>(url);
   }
+  public getMyGroups(): Observable<APIarray<viewgroup>> {
+    let url = `${environment.apiUrl}/view-my-groups`;
+    return this.http.get<APIarray<viewgroup>>(url);
+  }
+  public getGroupUsers(groupName: string): Observable<APIarray<viewgroup>> {
+    let url = `${environment.apiUrl}/${groupName}/view-users`;
+    return this.http.get<APIarray<viewgroup>>(url);
+  }
 
   public createGroup(name: string): Observable<ApiResponse<groupRes>> {
     let url = `${environment.apiUrl}/create-group`;

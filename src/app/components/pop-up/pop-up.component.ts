@@ -16,7 +16,7 @@ import { lastValueFrom } from 'rxjs';
 import { FilesService } from '../../services/files.service';
 import { APIarray } from '../../models/APIarray';
 import { file } from '../../models/file';
-import { invite } from '../../models/invite';
+import { sendinvite } from '../../models/sendinvite';
 import { UsersService } from '../../services/users.service';
 import { NgxFileDropEntry, NgxFileDropModule } from 'ngx-file-drop';
 
@@ -34,7 +34,7 @@ export class PopUpComponent implements OnChanges {
 
   groupForm!: FormGroup;
   groupName: string = '';
-  inviteInfo: invite[] = [];
+  inviteInfo: sendinvite[] = [];
   fileInfo: file[] = [];
 
   // Variable to store shortLink from api response
@@ -68,7 +68,7 @@ export class PopUpComponent implements OnChanges {
   }
   async sendInvite() {
     try {
-      let res: APIarray<invite> = await lastValueFrom(
+      let res: APIarray<sendinvite> = await lastValueFrom(
         this.userService.inviteUser(this.groupName, this.users_ids)
       );
       this.inviteInfo = res.data;

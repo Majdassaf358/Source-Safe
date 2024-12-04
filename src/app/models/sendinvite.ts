@@ -1,4 +1,4 @@
-export class invite {
+export class sendinvite {
   admin_id?: number;
   group_id?: number;
   user_id?: number;

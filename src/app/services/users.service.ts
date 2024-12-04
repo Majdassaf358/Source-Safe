@@ -4,7 +4,10 @@ import { Observable } from 'rxjs';
 import { APIarray } from '../models/APIarray';
 import { viewuser } from '../models/viewuser';
 import { environment } from '../models/environments';
-import { invite } from '../models/invite';
+import { sendinvite } from '../models/sendinvite';
+import { ApiResponse } from '../models/ApiResponse';
+import { nodata } from '../models/nodata';
+import { viewinvites } from '../models/viewinvites';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +22,32 @@ export class UsersService {
   public inviteUser(
     groupName: string,
     users_id: number[]
-  ): Observable<APIarray<invite>> {
+  ): Observable<APIarray<sendinvite>> {
     let url = `${environment.apiUrl}/${groupName}/invite-users`;
-    return this.http.post<APIarray<invite>>(url, { users_id });
+    return this.http.post<APIarray<sendinvite>>(url, { users_id });
+  }
+
+  public viewMyInvitations(): Observable<APIarray<viewinvites>> {
+    let url = `${environment.apiUrl}/view-my-invitations`;
+    return this.http.get<APIarray<viewinvites>>(url);
+  }
+  public acceptInvite(invitationId: number): Observable<ApiResponse<nodata>> {
+    let url = `${environment.apiUrl}/accept-invitation/${invitationId}`;
+    return this.http.get<ApiResponse<nodata>>(url);
+  }
+  public rejectInvite(invitationId: number): Observable<ApiResponse<nodata>> {
+    let url = `${environment.apiUrl}/reject-invitation/${invitationId}`;
+    return this.http.get<ApiResponse<nodata>>(url);
+  }
+  public exitGroup(groupName: string): Observable<ApiResponse<nodata>> {
+    let url = `${environment.apiUrl}/${groupName}/exit-group`;
+    return this.http.get<ApiResponse<nodata>>(url);
+  }
+  public kickFromGroup(
+    groupName: string,
+    userName: string
+  ): Observable<ApiResponse<nodata>> {
+    let url = `${environment.apiUrl}/${groupName}/kick-from-group/${userName}`;
+    return this.http.get<ApiResponse<nodata>>(url);
   }
 }
