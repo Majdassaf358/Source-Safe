@@ -11,17 +11,11 @@ import { Observable } from 'rxjs';
 export class FilesService {
   constructor(private http: HttpClient) {}
 
-  public uploadFile(filePath: file): Observable<APIarray<file>> {
-    let url = `${environment.apiUrl}/register`;
-    return this.http.post<APIarray<file>>(url, filePath);
-  }
-  upload(filePath: any): Observable<any> {
-    // Create form data
-    const formData = new FormData();
-
-    // Store form name as "file" with file data
-    formData.append('file', filePath, filePath.name);
+  public uploadFile(
+    filePath: string,
+    formData: string
+  ): Observable<APIarray<file>> {
     let url = `${environment.apiUrl}/${environment.groupName}/upload-file`;
-    return this.http.post<APIarray<file>>(url, formData);
+    return this.http.post<APIarray<file>>(url, { file_path: formData });
   }
 }

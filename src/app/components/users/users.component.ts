@@ -39,12 +39,10 @@ export class UsersComponent implements OnInit {
   toglleSelectAll() {
     this.selected = this.users.map(() => this.selectAll);
     this.updateSelectedUsers();
-    console.log(this.users_id);
   }
   checkBoxChanged(i: number) {
     this.selectAll = this.selected.every((isSelected) => isSelected);
     this.updateSelectedUsers();
-    console.log(this.users_id);
   }
   updateSelectedUsers() {
     this.users_id = this.users.reduce<number[]>((acc, user, index) => {

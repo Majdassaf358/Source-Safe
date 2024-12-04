@@ -18,11 +18,12 @@ import { APIarray } from '../../models/APIarray';
 import { file } from '../../models/file';
 import { invite } from '../../models/invite';
 import { UsersService } from '../../services/users.service';
+import { NgxFileDropEntry, NgxFileDropModule } from 'ngx-file-drop';
 
 @Component({
   selector: 'app-pop-up',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, NgxFileDropModule],
   templateUrl: './pop-up.component.html',
   styleUrl: './pop-up.component.css',
 })
@@ -34,14 +35,15 @@ export class PopUpComponent implements OnChanges {
   groupForm!: FormGroup;
   groupName: string = '';
   inviteInfo: invite[] = [];
+  fileInfo: file[] = [];
 
   // Variable to store shortLink from api response
   shortLink: string = '';
   loading: boolean = false; // Flag variable
-  file?: File;
+  // file
+  public files: NgxFileDropEntry[] = [];
 
   constructor(
-    private fb: FormBuilder,
     private groupService: GroupsService,
     private filesService: FilesService,
     private userService: UsersService,
@@ -53,23 +55,6 @@ export class PopUpComponent implements OnChanges {
     this.show = false;
   }
 
-  async onChangeFile(event: any) {
-    try {
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  initializeGroups() {
-    this.groupForm = this.fb.group({
-      name: ['', Validators.required],
-    });
-  }
-  initializeMember() {}
-
-  // crateGroupAll() {
-  //   this.initializeGroups();
-  //   this.crateGroupFunction();
-  // }
   async crateGroupFunction() {
     try {
       let res: ApiResponse<groupRes> = await lastValueFrom(
@@ -92,19 +77,41 @@ export class PopUpComponent implements OnChanges {
     }
   }
   // OnClick of button Upload
-  onUpload() {
-    this.loading = !this.loading;
-    console.log(this.file);
-    this.filesService.upload(this.file).subscribe((event: any) => {
-      if (typeof event === 'object') {
-        // Short link via api response
-        this.shortLink = event.link;
-
-        this.loading = false; // Flag variable
+  public dropped(files: NgxFileDropEntry[]) {
+    this.files = files;
+    for (const droppedFile of files) {
+      // Is it a file?
+      if (droppedFile.fileEntry.isFile) {
+        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+        fileEntry.file((file: File) => {
+          // Here you can access the real file
+          console.log(droppedFile.relativePath, file);
+          const formData = new FormData();
+          formData.append('logo', file, droppedFile.relativePath);
+          this.sendFiles(droppedFile.relativePath);
+        });
+      } else {
+        // It was a directory (empty directories are added, otherwise only files)
+        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+        console.log(droppedFile.relativePath, fileEntry);
       }
-    });
+    }
   }
-  onChange(event: any) {
-    this.file = event.target.files[0];
+  async sendFiles(formData: string) {
+    try {
+      let res: APIarray<file> = await lastValueFrom(
+        this.filesService.uploadFile(this.groupName, formData)
+      );
+      this.fileInfo = res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public fileOver(event: any) {
+    console.log(event);
+  }
+
+  public fileLeave(event: any) {
+    console.log(event);
   }
 }
