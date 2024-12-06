@@ -7,11 +7,12 @@ import { lastValueFrom } from 'rxjs';
 import { GroupsService } from '../../services/groups.service';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-groups',
   standalone: true,
-  imports: [PopUpComponent, FormsModule, CommonModule],
+  imports: [PopUpComponent, FormsModule, CommonModule, RouterModule],
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.css',
 })

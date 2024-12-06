@@ -62,7 +62,9 @@
 
 /* Button */
 .details-button {
+  text-decoration: none;
   padding: 8px 12px;
+  margin: 0 1em 0.2em 0;
   background-color: #00b2a9;
   border: none;
   border-radius: 4px;

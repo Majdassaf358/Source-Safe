@@ -21,7 +21,16 @@
           <td>{{ group.numberOfMembers }}</td>
           <td>{{ group.numberOfFiles }}</td>
           <td>
-            <button class="details-button">Show Details</button>
+            <a
+              class="details-button"
+              [routerLink]="['/groups/users', group.name]"
+              >Members</a
+            >
+            <a
+              class="details-button"
+              [routerLink]="['/groups/files', group.name]"
+              >Files</a
+            >
           </td>
         </tr>
       </tbody>

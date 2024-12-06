@@ -4,6 +4,7 @@ import { RegisterComponent } from './components/authentication/register/register
 import { GroupsComponent } from './components/groups/groups.component';
 import { ProfileComponent } from './components/authentication/profile/profile.component';
 import { UsersComponent } from './components/users/users.component';
+import { FilesComponent } from './components/files/files.component';
 
 export const routes: Routes = [
   {
@@ -24,11 +25,23 @@ export const routes: Routes = [
     component: GroupsComponent,
   },
   {
+    path: 'groups/users/:groupName',
+    component: UsersComponent,
+  },
+  {
+    path: 'groups/users/:groupName',
+    component: UsersComponent,
+  },
+  {
+    path: 'groups/files/:groupName',
+    component: FilesComponent,
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
   },
-  {
-    path: 'users',
-    component: UsersComponent,
-  },
+  // {
+  //   path: 'users',
+  //   component: UsersComponent,
+  // },
 ];

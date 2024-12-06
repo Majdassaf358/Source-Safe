@@ -1,6 +1,6 @@
 <nav>
   <ul class="nav-bar">
-    <li class="">
+    <li class="menu">
       <div class="profile">
         <img
           class="profile-img"
@@ -9,6 +9,8 @@
           (click)="goToProfile()"
         />
       </div>
+      <a class="nav-links" [routerLink]="['/groups']"> Groups</a>
+      <a class="nav-links" [routerLink]="['/groups/users', 'all']"> Users</a>
     </li>
     <input type="checkbox" id="check" />
     <span class="menu">
