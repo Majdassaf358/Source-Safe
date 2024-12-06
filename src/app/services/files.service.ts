@@ -12,10 +12,14 @@ export class FilesService {
   constructor(private http: HttpClient) {}
 
   public uploadFile(
-    filePath: string,
-    formData: string
+    temporary: string,
+    files: FileList
   ): Observable<APIarray<file>> {
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append('file_path[]', files[i]);
+    }
     let url = `${environment.apiUrl}/${environment.groupName}/upload-file`;
-    return this.http.post<APIarray<file>>(url, { file_path: formData });
+    return this.http.post<APIarray<file>>(url, formData);
   }
 }
