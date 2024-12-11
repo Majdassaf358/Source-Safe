@@ -14,8 +14,8 @@
         </tr>
       </thead>
       <tbody id="groups-table-body">
-        <tr *ngFor="let group of groups">
-          <td>{{ group.id }}</td>
+        <tr *ngFor="let group of groups; let i = index">
+          <td>{{ i + 1 }}</td>
           <td>{{ group.name }}</td>
           <td>{{ group.admin?.username }}</td>
           <td>{{ group.numberOfMembers }}</td>

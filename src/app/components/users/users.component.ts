@@ -6,6 +6,7 @@ import { UsersService } from '../../services/users.service';
 import { viewuser } from '../../models/viewuser';
 import { lastValueFrom } from 'rxjs';
 import { APIarray } from '../../models/APIarray';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -17,6 +18,7 @@ import { APIarray } from '../../models/APIarray';
 export class UsersComponent implements OnInit {
   showPopUp: boolean = false;
   display: string = '';
+  groupName: string = '';
   users: viewuser[] = [];
   selected: boolean[] = [];
 
@@ -24,10 +26,20 @@ export class UsersComponent implements OnInit {
   mode: string = 'default';
   selectAll: boolean = false;
 
-  constructor(private userService: UsersService) {}
+  constructor(
+    private userService: UsersService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.getUsers();
+    this.route.paramMap.subscribe((paramsMap) => {
+      this.groupName = paramsMap.get('groupName') || '';
+      if (this.groupName == 'all') {
+        this.getAllUsers();
+      } else {
+        this.getGroupUsers(this.groupName);
+      }
+    });
   }
 
   enableSelect() {
@@ -53,10 +65,21 @@ export class UsersComponent implements OnInit {
     }, []);
   }
 
-  async getUsers() {
+  async getAllUsers() {
     try {
       let res: APIarray<viewuser> = await lastValueFrom(
         this.userService.getUsers()
+      );
+      this.users = res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getGroupUsers(name: string) {
+    try {
+      let res: APIarray<viewuser> = await lastValueFrom(
+        this.userService.getGroupUsers(name)
       );
       this.users = res.data;
     } catch (error) {

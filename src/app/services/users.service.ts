@@ -19,6 +19,10 @@ export class UsersService {
     let url = `${environment.apiUrl}/view-users`;
     return this.http.get<APIarray<viewuser>>(url);
   }
+  public getGroupUsers(name: string): Observable<APIarray<viewuser>> {
+    let url = `${environment.apiUrl}/${name}/view-users`;
+    return this.http.get<APIarray<viewuser>>(url);
+  }
   public inviteUser(
     groupName: string,
     users_id: number[]
