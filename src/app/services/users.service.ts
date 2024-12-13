@@ -8,6 +8,7 @@ import { sendinvite } from '../models/sendinvite';
 import { ApiResponse } from '../models/ApiResponse';
 import { nodata } from '../models/nodata';
 import { viewinvites } from '../models/viewinvites';
+import { users } from '../models/users';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +20,9 @@ export class UsersService {
     let url = `${environment.apiUrl}/view-users`;
     return this.http.get<APIarray<viewuser>>(url);
   }
-  public getGroupUsers(name: string): Observable<APIarray<viewuser>> {
+  public getGroupUsers(name: string): Observable<ApiResponse<users>> {
     let url = `${environment.apiUrl}/${name}/view-users`;
-    return this.http.get<APIarray<viewuser>>(url);
+    return this.http.get<ApiResponse<users>>(url);
   }
   public inviteUser(
     groupName: string,

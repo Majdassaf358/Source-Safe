@@ -7,6 +7,8 @@ import { viewuser } from '../../models/viewuser';
 import { lastValueFrom } from 'rxjs';
 import { APIarray } from '../../models/APIarray';
 import { ActivatedRoute } from '@angular/router';
+import { ApiResponse } from '../../models/ApiResponse';
+import { users } from '../../models/users';
 
 @Component({
   selector: 'app-users',
@@ -20,10 +22,11 @@ export class UsersComponent implements OnInit {
   display: string = '';
   groupName: string = '';
   users: viewuser[] = [];
+  groupUsers: users = new users();
   selected: boolean[] = [];
 
   users_id: number[] = [];
-  mode: string = 'default';
+  mode: string = '';
   selectAll: boolean = false;
 
   constructor(
@@ -35,8 +38,10 @@ export class UsersComponent implements OnInit {
     this.route.paramMap.subscribe((paramsMap) => {
       this.groupName = paramsMap.get('groupName') || '';
       if (this.groupName == 'all') {
+        this.mode = 'default';
         this.getAllUsers();
       } else {
+        this.mode = 'default';
         this.getGroupUsers(this.groupName);
       }
     });
@@ -71,6 +76,7 @@ export class UsersComponent implements OnInit {
         this.userService.getUsers()
       );
       this.users = res.data;
+      this.selected = new Array(this.users.length).fill(false);
     } catch (error) {
       console.log(error);
     }
@@ -78,10 +84,13 @@ export class UsersComponent implements OnInit {
 
   async getGroupUsers(name: string) {
     try {
-      let res: APIarray<viewuser> = await lastValueFrom(
+      let res: ApiResponse<users> = await lastValueFrom(
         this.userService.getGroupUsers(name)
       );
-      this.users = res.data;
+      this.groupUsers = res.data;
+      this.users = this.groupUsers.users || [];
+      this.selected = new Array(this.users.length).fill(false);
+      console.log(this.groupUsers);
     } catch (error) {
       console.log(error);
     }

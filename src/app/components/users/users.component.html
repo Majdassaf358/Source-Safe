@@ -25,7 +25,6 @@
         <tr>
           <th>ID</th>
           <th>Username</th>
-          <th>Email</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -33,7 +32,6 @@
         <tr *ngFor="let user of users; let i = index">
           <td>{{ user.id }}</td>
           <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
           <td *ngIf="mode == 'select'">
             <input
               class="users-inputs"
@@ -55,7 +53,7 @@
     <span id="page-info" class="page-info"></span>
     <button id="next-btn" class="pagination-button">Next</button>
   </div> -->
-  <button
+  <!-- <button
     class="users-buttons"
     *ngIf="mode == 'select'"
     (click)="desaibleSelect()"
@@ -68,5 +66,5 @@
     (click)="openInvite(); $event.stopPropagation()"
   >
     Invite
-  </button>
+  </button> -->
 </div>
