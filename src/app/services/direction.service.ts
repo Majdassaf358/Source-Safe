@@ -9,7 +9,7 @@ export class DirectionService {
     if (selectedLanguage == 'en') {
       const links = document.querySelectorAll('link[rel="stylesheet"]');
       links.forEach((link) => {
-        if (link.getAttribute('href') === 'assets/styles-ar.css') {
+        if (link.getAttribute('href') === 'assets/css/ar.css') {
           link.remove();
         }
       });
@@ -17,7 +17,7 @@ export class DirectionService {
       const linkElement = document.createElement('link');
       linkElement.setAttribute('rel', 'stylesheet');
       linkElement.setAttribute('type', 'text/css');
-      linkElement.setAttribute('href', 'assets/styles-ar.css');
+      linkElement.setAttribute('href', 'assets/css/ar.css');
       document.head.appendChild(linkElement);
     }
   }

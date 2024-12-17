@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DirectionService } from './services/direction.service';
 import { DarkService } from './services/dark.service';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -8,7 +8,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, TranslateModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -20,8 +20,9 @@ export class AppComponent implements OnInit {
     private diectionService: DirectionService,
     private darkservice: DarkService
   ) {
-    // this.translateService.setDefaultLang('en');
-    // this.translateService.use(localStorage.getItem('language') || 'en');
+    this.translateService.addLangs(['ar', 'en']);
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('language') || 'en');
     const storedValue = localStorage.getItem('mode');
     this.mode = storedValue ? JSON.parse(storedValue) : false;
   }

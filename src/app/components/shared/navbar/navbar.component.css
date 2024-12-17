@@ -154,12 +154,6 @@
 .dark-active + .toggle-dark::after {
   transform: translate(-100%, -50%) scale(5);
 }
-.top-flag {
-  margin-left: 6px;
-  margin-top: 18px;
-  width: 35px;
-  height: 35px;
-}
 
 .profile {
   margin: 1em 0.2em 0 1em;
@@ -175,4 +169,67 @@
   color: #000000;
   margin: 2em 1.3em 0 1.3em;
   text-decoration: none;
+}
+@media (min-width: 610px) {
+  .flags-list {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .flags-list:hover .the-list {
+    display: block;
+    width: 140px;
+  }
+  .the-list {
+    width: 100%;
+    position: absolute;
+    top: 75px;
+    right: 15px;
+    cursor: pointer;
+    background: #454444;
+    display: none;
+    border-radius: 10%;
+  }
+  .top-flag {
+    margin-left: 6px;
+    margin-top: 18px;
+    width: 35px;
+    height: 35px;
+  }
+  .list-flags {
+    width: 36px;
+    height: 35px;
+  }
+  .flag-language {
+    width: 50px;
+  }
+
+  .selected-language {
+    margin-top: 20px;
+    line-height: 2;
+    width: 80px;
+  }
+  .flags-list ul {
+    margin: 0;
+    padding: 0;
+    background-color: #ccc;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .flags-list ul li {
+    list-style: none;
+  }
+  .flags-list ul li a {
+    color: #fff;
+    width: 90px;
+    display: block;
+    padding: 5px 0 5px 0px;
+  }
+  .flags-list ul li div {
+    border-radius: 20%;
+    overflow: hidden;
+  }
+  .flags-list ul li div:hover {
+    background-color: #1f1e1e;
+  }
 }

@@ -27,11 +27,11 @@ export class NavbarComponent implements OnInit {
   mode: boolean = false;
   flags = [
     {
-      src: 'assets/Images/united-kingdom.png',
+      src: 'assets/img/united-kingdom.png',
       language: 'English',
       lang: 'en',
     },
-    { src: 'assets/Images/syria.png', language: 'Arabic', lang: 'ar' },
+    { src: 'assets/img/syria.png', language: 'Arabic', lang: 'ar' },
   ];
 
   constructor(
@@ -61,6 +61,8 @@ export class NavbarComponent implements OnInit {
       this.selectedlang = 'Arabic';
     }
     localStorage.setItem('language', lang);
+    this.translateService.use(lang);
+    this.directionService.toggleExternalStyles(lang);
   }
 
   goToProfile() {

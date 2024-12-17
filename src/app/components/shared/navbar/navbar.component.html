@@ -24,15 +24,33 @@
         />
         <label for="dark-mode-toggle" class="toggle-dark"></label>
       </li>
+
       <li>
-        <div>
-          <div>
-            <img class="top-flag" src="{{ selectedFlag }}" alt="" />
+        <div class="flags-list">
+          <div class="flag-language">
+            <img
+              class="top-flag"
+              src="{{ selectedFlag }}"
+              (change)="changeLan($event)"
+            />
           </div>
-          <div class="selected-language" (change)="changeLan($event)">
-            {{ selectedlang }}
+          <div class="selected-language">
+            {{ selectedlang | translate }}
           </div>
-          <div></div>
+          <ul>
+            <li class="the-list">
+              <div
+                class="display-flex"
+                *ngFor="let flag of flags"
+                (click)="changeLan(flag.lang)"
+              >
+                <div class="flag-language">
+                  <img class="list-flags" src="{{ flag.src }}" />
+                </div>
+                <a>{{ flag.language | translate }}</a>
+              </div>
+            </li>
+          </ul>
         </div>
       </li>
 

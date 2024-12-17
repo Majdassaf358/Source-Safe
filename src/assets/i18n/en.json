@@ -1,7 +1,9 @@
 {
-    "dir":"ltr",
-    "Let me in":"Let me in",
-    "Login":"Login"
-
-
+  "dir": "ltr",
+  "Let me in": "Let me in",
+  "Login": "Login",
+  "English": "English",
+  "Arabic": "Arabic",
+  "Dashboard": "Dashboard",
+  "Log out": "Log out"
 }
