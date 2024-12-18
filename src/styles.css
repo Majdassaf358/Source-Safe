@@ -1,3 +1,4 @@
+/* ALL */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,4 +7,236 @@
 
 .display-flex {
   display: flex;
+}
+/* Navbar */
+.nav-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  position: relative;
+  background-color: #00b2a9;
+  padding: 12px 20px;
+}
+.logo img {
+  width: 40px;
+}
+.menu {
+  display: flex;
+  padding-left: 10px;
+}
+.menu li a {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  transition: 0.15s ease-in-out;
+  position: relative;
+}
+.menu li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: white;
+  transition: 0.15s ease-in-out;
+}
+.menu li a:hover:after {
+  width: 100%;
+}
+.open-menu,
+.close-menu {
+  position: absolute;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: none;
+}
+.open-menu {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+.close-menu {
+  top: 20px;
+  right: 20px;
+}
+#check {
+  display: none;
+}
+@media (max-width: 610px) {
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 100;
+    background-color: #000000;
+    transition: all 0.2s ease-in-out;
+  }
+  .menu li {
+    margin-top: 40px;
+  }
+  .menu li a {
+    padding: 10px;
+  }
+  .open-menu,
+  .close-menu {
+    display: block;
+  }
+  #check:checked ~ .menu {
+    right: 0;
+  }
+}
+.dark-button {
+  width: 90px;
+  height: 60px;
+  background: #000000;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+}
+
+.dark-button + .toggle-dark {
+  margin: 10px 10px 5px 5px;
+  outline: 1px solid #002a2a;
+  transform: scale(1, 1);
+  transition: outline 0.25s ease, transform 0.15s ease;
+}
+
+.dark-button:active + .toggle-dark {
+  transform: scale(1.05);
+}
+
+.toggle-dark {
+  position: relative;
+  background: #fff;
+  display: block;
+  width: 80px;
+  height: calc(80px / 2);
+  border-radius: 80px;
+  box-shadow: 0px calc(80px / 7.5) calc(80px / 3.75) 0px rgba(51, 51, 51, 0.1);
+  cursor: pointer;
+  text-indent: 200vw;
+  overflow: hidden;
+}
+
+.toggle-dark::before,
+.toggle-dark::after {
+  content: "";
+  position: absolute;
+}
+
+.toggle-dark::before {
+  width: calc(80px / 3);
+  height: calc(80px / 3);
+  border-radius: 50%;
+  background: #333;
+  left: 0;
+  top: 50%;
+  transform: translate(calc(80px / 12), -50%);
+  box-shadow: calc(80px - calc(80px / 6) - calc(80px / 3)) 0 0 #fff;
+  z-index: 1;
+}
+
+.toggle-dark::after {
+  width: calc(80px / 3);
+  height: calc(80px / 3);
+  left: 0;
+  top: 50%;
+  background: #333;
+  transform: translate(-100%, -50%) scale(1);
+  transform-origin: left;
+  border-radius: 50%;
+  transition: transform 0.35s ease;
+}
+
+.dark-active + .toggle-dark::after {
+  transform: translate(-100%, -50%) scale(5);
+}
+
+.profile {
+  margin: 1em 0.2em 0 1em;
+  width: 30%;
+}
+
+.profile-img {
+  width: 45%;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.nav-links {
+  color: #000000;
+  margin: 2em 1.3em 0 1.3em;
+  text-decoration: none;
+}
+
+/* flags */
+@media (min-width: 610px) {
+  .flags-list {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .flags-list:hover .the-list {
+    display: block;
+    width: 140px;
+  }
+  .the-list {
+    position: absolute;
+    top: 73px;
+    right: 15px;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 15%;
+    display: none;
+  }
+  .top-flag {
+    margin-left: 0.3rem;
+    margin-top: 1rem;
+    width: 35px;
+    height: 35px;
+  }
+  .list-flags {
+    margin: 0 0 0 0.7rem;
+    width: 35px;
+    height: 35px;
+  }
+  .flag-language {
+    width: 50px;
+  }
+
+  .selected-language {
+    margin-top: 20px;
+    line-height: 2;
+    width: 80px;
+  }
+  .flags-list ul {
+    margin: 0;
+    padding: 0;
+    background-color: #ccc;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .flags-list ul li {
+    list-style: none;
+  }
+  .flags-list ul li a {
+    color: #fff;
+    width: 90px;
+    display: block;
+    padding: 5px 0 5px 0px;
+  }
+  .flags-list ul li div {
+    border-radius: 20%;
+    overflow: hidden;
+  }
 }
