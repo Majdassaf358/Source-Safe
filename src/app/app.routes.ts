@@ -5,6 +5,7 @@ import { GroupsComponent } from './components/groups/groups.component';
 import { ProfileComponent } from './components/authentication/profile/profile.component';
 import { UsersComponent } from './components/users/users.component';
 import { FilesComponent } from './components/files/files.component';
+import { InvitesComponent } from './components/invites/invites.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,10 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'invites',
+    component: InvitesComponent,
   },
   // {
   //   path: 'users',
