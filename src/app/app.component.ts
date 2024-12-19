@@ -4,6 +4,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DirectionService } from './services/direction.service';
 import { DarkService } from './services/dark.service';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { InvitesService } from './services/invites.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
     private diectionService: DirectionService,
-    private darkservice: DarkService
+    private darkservice: DarkService,
+    private inviteService: InvitesService
   ) {
     this.translateService.addLangs(['ar', 'en']);
     this.translateService.setDefaultLang('en');
@@ -28,9 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.diectionService.toggleExternalStyles(
-    //   localStorage.getItem('language') || 'en'
-    // );
+    this.inviteService.fetchInviteCount();
     this.darkservice.changeMode(this.mode);
   }
   title = 'Source_Safe';

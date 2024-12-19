@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../models/environments';
 import { ApiResponse } from '../models/ApiResponse';
-import { groupReq } from '../models/groupReq';
 import { groupRes } from '../models/groupRes';
 import { APIarray } from '../models/APIarray';
 import { viewgroup } from '../models/viewgroup';

@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { InvitesService } from '../../../services/invites.service';
 
 @Component({
   selector: 'app-navbar',
@@ -33,8 +34,9 @@ export class NavbarComponent implements OnInit {
     },
     { src: 'assets/img/syria.png', language: 'Arabic', lang: 'ar' },
   ];
-
+  inviteCount: number = 0;
   constructor(
+    private invitesService: InvitesService,
     private translateService: TranslateService,
     private directionService: DirectionService,
     private darkService: DarkService,
@@ -42,6 +44,9 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.invitesService.inviteCount$.subscribe((count) => {
+      this.inviteCount = count;
+    });
     const modeState = localStorage.getItem('mode');
     this.mode = modeState ? JSON.parse(modeState) : false;
   }
