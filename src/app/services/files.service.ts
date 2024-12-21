@@ -11,15 +11,8 @@ import { Observable } from 'rxjs';
 export class FilesService {
   constructor(private http: HttpClient) {}
 
-  public uploadFile(
-    temporary: string,
-    files: FileList
-  ): Observable<APIarray<file>> {
-    const formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      formData.append('file_path[]', files[i]);
-    }
+  public uploadFile(formData: any): Observable<any> {
     let url = `${environment.apiUrl}/${environment.groupName}/upload-file`;
-    return this.http.post<APIarray<file>>(url, formData);
+    return this.http.post<any>(url, formData);
   }
 }

@@ -35,13 +35,8 @@ export class PopUpComponent implements OnChanges {
   groupForm!: FormGroup;
   groupName: string = '';
   inviteInfo: sendinvite[] = [];
-  fileInfo: file[] = [];
-
-  // Variable to store shortLink from api response
-  shortLink: string = '';
-  loading: boolean = false; // Flag variable
-  // file
-  public files: NgxFileDropEntry[] = [];
+  selectedFiles: File[] = [];
+  uploadedFiles: file[] = [];
 
   constructor(
     private groupService: GroupsService,
@@ -76,53 +71,33 @@ export class PopUpComponent implements OnChanges {
       console.log(error);
     }
   }
-  onChange(event: any) {
-    const file = event.target.files;
-    const formData = new FormData();
-    formData.append('file', file);
-    this.sendFiles(file);
+  onChange(event: any) {}
+
+  onUpload(event: any) {
+    this.selectedFiles = Array.from(event.target.files);
   }
-  async sendFiles(formData: any) {
-    // console.log(formData);
+
+  //   async uploadFiles() {
+  //     const formData = new FormData();
+  //     this.selectedFiles.forEach((file) => {
+  //       formData.append('file_path', file);
+  //     });
+  //     let res: any = await lastValueFrom(this.filesService.uploadFile(formData));
+  //     console.log(res);
+  //   }
+  // }
+  async uploadFiles() {
+    const formData = new FormData();
+    this.selectedFiles.forEach((file) => {
+      formData.append('file_path[]', file); // Note the array notation if multiple files are expected
+    });
     try {
-      let res: APIarray<file> = await lastValueFrom(
-        this.filesService.uploadFile(this.groupName, formData)
+      let res: any = await lastValueFrom(
+        this.filesService.uploadFile(formData)
       );
-      this.fileInfo = res.data;
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
-  }
-
-  onUpload() {}
-
-  // OnClick of button Upload
-  dropped(files: NgxFileDropEntry[]) {
-    this.files = files;
-    for (const droppedFile of files) {
-      // Is it a file?
-      if (droppedFile.fileEntry.isFile) {
-        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file((file: File) => {
-          // Here you can access the real file
-          console.log(droppedFile.relativePath, file);
-          const formData = new FormData();
-          formData.append('file', file, droppedFile.relativePath);
-          this.sendFiles(formData);
-        });
-      } else {
-        // It was a directory (empty directories are added, otherwise only files)
-        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-        console.log(droppedFile.relativePath, fileEntry);
-      }
-    }
-  }
-
-  public fileOver(event: any) {
-    console.log(event);
-  }
-
-  public fileLeave(event: any) {
-    console.log(event);
   }
 }
