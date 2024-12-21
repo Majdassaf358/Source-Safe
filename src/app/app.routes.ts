@@ -6,6 +6,7 @@ import { ProfileComponent } from './components/authentication/profile/profile.co
 import { UsersComponent } from './components/users/users.component';
 import { FilesComponent } from './components/files/files.component';
 import { InvitesComponent } from './components/invites/invites.component';
+import { WindowComponent } from './components/shared/window/window.component';
 
 export const routes: Routes = [
   {
@@ -44,6 +45,10 @@ export const routes: Routes = [
   {
     path: 'invites',
     component: InvitesComponent,
+  },
+  {
+    path: 'window',
+    component: WindowComponent,
   },
   // {
   //   path: 'users',
