@@ -46,3 +46,8 @@
 .popup button:hover {
   background-color: #005f58;
 }
+.title {
+  text-align: center;
+  color: #007973; /* Vibrant color for the title */
+  margin-bottom: 20px;
+}

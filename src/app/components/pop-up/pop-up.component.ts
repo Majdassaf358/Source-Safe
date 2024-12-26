@@ -19,6 +19,8 @@ import { file } from '../../models/file';
 import { sendinvite } from '../../models/sendinvite';
 import { UsersService } from '../../services/users.service';
 import { NgxFileDropEntry, NgxFileDropModule } from 'ngx-file-drop';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../models/environments';
 
 @Component({
   selector: 'app-pop-up',
@@ -39,6 +41,7 @@ export class PopUpComponent implements OnChanges {
   uploadedFiles: file[] = [];
 
   constructor(
+    private http: HttpClient,
     private groupService: GroupsService,
     private filesService: FilesService,
     private userService: UsersService,
@@ -86,18 +89,14 @@ export class PopUpComponent implements OnChanges {
   //     console.log(res);
   //   }
   // }
-  async uploadFiles() {
+  uploadFiles() {
     const formData = new FormData();
     this.selectedFiles.forEach((file) => {
-      formData.append('file_path[]', file); // Note the array notation if multiple files are expected
+      formData.append('file_path', file);
     });
-    try {
-      let res: any = await lastValueFrom(
-        this.filesService.uploadFile(formData)
-      );
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-    }
+    let url = `${environment.apiUrl}/${environment.groupName}/upload-file`;
+    this.http.post<any>(url, formData).subscribe({
+      next: (res) => console.log('Uploaded successfully', res),
+    });
   }
 }

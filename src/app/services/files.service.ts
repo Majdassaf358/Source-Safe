@@ -13,6 +13,6 @@ export class FilesService {
 
   public uploadFile(formData: any): Observable<any> {
     let url = `${environment.apiUrl}/${environment.groupName}/upload-file`;
-    return this.http.post<any>(url, formData);
+    return this.http.post<any>(url, { file_path: formData });
   }
 }
