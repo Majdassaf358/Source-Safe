@@ -6,7 +6,6 @@ import { viewgroup } from '../../models/viewgroup';
 import { lastValueFrom } from 'rxjs';
 import { GroupsService } from '../../services/groups.service';
 import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -18,7 +17,7 @@ import { RouterModule } from '@angular/router';
 })
 export class GroupsComponent implements OnInit {
   showPopUp: boolean = false;
-  display: string = '';
+  displayPopUp: string = '';
   groups: viewgroup[] = [];
   constructor(private groupService: GroupsService) {}
   ngOnInit(): void {
@@ -26,11 +25,11 @@ export class GroupsComponent implements OnInit {
   }
   openPopUpUpload() {
     this.showPopUp = true;
-    this.display = 'upload';
+    this.displayPopUp = 'upload';
   }
   openPopUpCreate() {
     this.showPopUp = true;
-    this.display = 'create';
+    this.displayPopUp = 'create';
   }
 
   async getGroups() {
