@@ -6,9 +6,9 @@ import {
 import { tap } from 'rxjs';
 
 const messagesToLog = new Set([
-  'Group created successfully.',
-  'You are not a member in this group.',
-  'Specific message 2',
+  'Group created successfully',
+  'You are not a member in this group',
+  'You have already invited this user',
 ]);
 
 export const interceptorInterceptor: HttpInterceptorFn = (req, next) => {
