@@ -58,7 +58,6 @@ export class PopUpComponent implements OnChanges {
       let res: ApiResponse<groupRes> = await lastValueFrom(
         this.groupService.createGroup(this.groupName)
       );
-      console.log(res.message);
       this.show = false;
     } catch (error) {
       console.log(error);

@@ -28,4 +28,14 @@ export class InvitesComponent implements OnInit {
       console.log(error);
     }
   }
+  // async sendInvite() {
+  //   try {
+  //     let res: APIarray<Invite> = await lastValueFrom(
+  //       this.inviteService.viewMyInvitations()
+  //     );
+  //     this.invites = res.data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 }
