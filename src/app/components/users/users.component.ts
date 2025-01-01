@@ -99,6 +99,9 @@ export class UsersComponent implements OnInit {
     this.showPopUp = true;
     this.display = 'invite';
   }
+  deletegroup(){
+    
+  }
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
     const targetElement = event.target as Element;

@@ -1,1 +1,44 @@
-<p>files works!</p>
+<div class="user-container">
+  <div class="users-header">
+    <h1 class="user-title">Users</h1>
+    <button
+      class="users-buttons"
+      *ngIf="mode == 'default'"
+      (click)="temporary()"
+    >
+      Invite
+    </button>
+
+    <input
+      class="users-inputs"
+      *ngIf="mode == 'select'"
+      type="checkbox"
+      [(ngModel)]="tem"
+      (change)="temporary()"
+    />
+  </div>
+  <div class="user-table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>File name</th>
+        </tr>
+      </thead>
+      <tbody id="user-table-body">
+        <tr *ngFor="let file of files; let i = index">
+          <td>{{ i + 1  }}</td>
+          <td>{{ file.file_name }}</td>
+          <td *ngIf="mode == 'select'">
+            <input
+              class="users-inputs"
+              type="checkbox"
+              [(ngModel)]="tem[i]"
+              (change)="temporary()"
+            />
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>

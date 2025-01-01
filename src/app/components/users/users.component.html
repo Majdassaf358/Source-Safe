@@ -55,6 +55,13 @@
   </div> -->
   <button
     class="users-buttons"
+    *ngIf="mode == 'default'"
+    (click)="deletegroup()"
+  >
+    Cancel
+  </button>
+  <button
+    class="users-buttons"
     *ngIf="mode == 'select'"
     (click)="desaibleSelect()"
   >

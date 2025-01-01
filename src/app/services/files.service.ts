@@ -4,6 +4,7 @@ import { APIarray } from '../models/APIarray';
 import { file } from '../models/file';
 import { environment } from '../models/environments';
 import { Observable } from 'rxjs';
+import { viewfile } from '../models/viewfile';
 
 @Injectable({
   providedIn: 'root',
@@ -14,5 +15,9 @@ export class FilesService {
   public uploadFile(formData: any): Observable<any> {
     let url = `${environment.apiUrl}/${environment.groupName}/upload-file`;
     return this.http.post<any>(url, { file_path: formData });
+  }
+  public getFiles(groupName:string): Observable<APIarray<viewfile>> {
+    let url = `${environment.apiUrl}/${groupName}/view-files`;
+    return this.http.get<APIarray<viewfile>>(url);
   }
 }
