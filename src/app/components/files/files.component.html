@@ -1,6 +1,6 @@
 <div class="user-container">
   <div class="users-header">
-    <h1 class="user-title">Users</h1>
+    <h1 class="user-title">Files</h1>
     <button
       class="users-buttons"
       *ngIf="mode == 'default'"
@@ -8,7 +8,6 @@
     >
       Invite
     </button>
-
     <input
       class="users-inputs"
       *ngIf="mode == 'select'"
@@ -23,12 +22,14 @@
         <tr>
           <th>ID</th>
           <th>File name</th>
+          <th>File Owner</th>
         </tr>
       </thead>
       <tbody id="user-table-body">
         <tr *ngFor="let file of files; let i = index">
           <td>{{ i + 1  }}</td>
           <td>{{ file.file_name }}</td>
+          <td>{{ file.file_owner?.username }}</td>
           <td *ngIf="mode == 'select'">
             <input
               class="users-inputs"
@@ -37,7 +38,6 @@
               (change)="temporary()"
             />
           </td>
-          
         </tr>
       </tbody>
     </table>
