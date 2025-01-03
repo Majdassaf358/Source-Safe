@@ -4,9 +4,9 @@
     <button
       class="users-buttons"
       *ngIf="mode == 'default'"
-      (click)="temporary()"
+      (click)="enableSelect()"
     >
-      Invite
+      Select
     </button>
     <input
       class="users-inputs"
@@ -23,6 +23,8 @@
           <th>ID</th>
           <th>File name</th>
           <th>File Owner</th>
+          <th>Action</th>
+
         </tr>
       </thead>
       <tbody id="user-table-body">
@@ -30,6 +32,9 @@
           <td>{{ i + 1  }}</td>
           <td>{{ file.file_name }}</td>
           <td>{{ file.file_owner?.username }}</td>
+          <td *ngIf="mode == 'default'">
+            <button class="details-button" (click)="addNumberToCheckIn(file.id)">Check in</button>
+          </td>
           <td *ngIf="mode == 'select'">
             <input
               class="users-inputs"
@@ -42,3 +47,17 @@
       </tbody>
     </table>
   </div>
+  <button
+    class="users-buttons"
+    *ngIf="mode == 'select'"
+    (click)="desaibleSelect()"
+  >
+    Cancel
+  </button>
+  <button
+    class="users-buttons"
+    *ngIf="mode == 'select'"
+    (click)="checkIn(); $event.stopPropagation()"
+  >
+    Invite
+  </button>
