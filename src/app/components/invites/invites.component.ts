@@ -29,7 +29,6 @@ export class InvitesComponent implements OnInit {
         this.inviteService.viewMyInvitations()
       );
       this.invites = res.data;
-      console.log(this.invites);
     } catch (error) {
       console.log(error);
     }

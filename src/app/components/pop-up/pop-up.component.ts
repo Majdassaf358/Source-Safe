@@ -69,7 +69,6 @@ export class PopUpComponent implements OnChanges {
         this.userService.inviteUser(this.groupName, this.users_ids)
       );
       this.inviteInfo = res.data;
-      console.log(this.inviteInfo);
     } catch (error) {
       console.log(error);
     }

@@ -31,19 +31,6 @@ export class UsersService {
     let url = `${environment.apiUrl}/${groupName}/invite-users`;
     return this.http.post<APIarray<sendinvite>>(url, { users_id });
   }
-
-  public viewMyInvitations(): Observable<APIarray<viewinvites>> {
-    let url = `${environment.apiUrl}/view-my-invitations`;
-    return this.http.get<APIarray<viewinvites>>(url);
-  }
-  public acceptInvite(invitationId: number): Observable<ApiResponse<nodata>> {
-    let url = `${environment.apiUrl}/accept-invitation/${invitationId}`;
-    return this.http.get<ApiResponse<nodata>>(url);
-  }
-  public rejectInvite(invitationId: number): Observable<ApiResponse<nodata>> {
-    let url = `${environment.apiUrl}/reject-invitation/${invitationId}`;
-    return this.http.get<ApiResponse<nodata>>(url);
-  }
   public exitGroup(groupName: string): Observable<ApiResponse<nodata>> {
     let url = `${environment.apiUrl}/${groupName}/exit-group`;
     return this.http.get<ApiResponse<nodata>>(url);
