@@ -1,26 +1,6 @@
 <div *ngIf="show" class="side-warehouses-bg" (click)="removeSideDisplay()">
   <div class="side-warehouses-display" (click)="$event.stopPropagation()">
-    <ng-container *ngIf="display == 'upload'">
-      <div class="upload">
-        <div class="create-group-container">
-          <h1>Upload File</h1>
-          <input
-            type="file"
-            multiple="multiple"
-            #fileInput
-            (change)="onUpload($event)"
-          />
-          <button
-            [disabled]="!selectedFiles.length"
-            class="btn btn-success"
-            (click)="uploadFiles()"
-          >
-            Upload
-          </button>
-        </div>
-      </div>
-    </ng-container>
-
+    
     <ng-container *ngIf="display == 'create'">
       <div class="create-group-container">
         <h1>Create Group</h1>
@@ -43,10 +23,15 @@
         <h1>Invite to:</h1>
         <form>
           <label for="groupName">Group Name: </label>
-          <input type="text" [(ngModel)]="groupName" name="group-name" />
+          <select class="form-control" [(ngModel)]="groupName" name="group-name" >
+            <option value="{{group.name}}" *ngFor="let group of groups">
+              {{group.name}}
+            </option>
+          </select>
           <button type="submit" class="upload-btn" (click)="sendInvite()">
             Invite Users
           </button>
+          
         </form>
       </div>
     </ng-container>

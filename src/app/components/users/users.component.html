@@ -1,5 +1,7 @@
-<app-pop-up [show]="showPopUp" [display]="display" [users_ids]="users_id">
-</app-pop-up>
+<ng-container *ngIf="users_id.length > 0">
+  <app-pop-up [show]="showPopUp" [display]="display" [users_ids]="users_id">
+  </app-pop-up>
+</ng-container>
 <div class="user-container">
   <div class="users-header">
     <h1 class="user-title">Users</h1>

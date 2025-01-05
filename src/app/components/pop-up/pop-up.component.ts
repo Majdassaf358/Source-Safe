@@ -21,6 +21,7 @@ import { UsersService } from '../../services/users.service';
 import { NgxFileDropEntry, NgxFileDropModule } from 'ngx-file-drop';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../models/environments';
+import { viewgroup } from '../../models/viewgroup';
 
 @Component({
   selector: 'app-pop-up',
@@ -34,6 +35,7 @@ export class PopUpComponent implements OnChanges {
   @Input() display?: string;
   @Input() users_ids!: number[];
 
+  groups: viewgroup[] = [];
   groupForm!: FormGroup;
   groupName: string = '';
   inviteInfo: sendinvite[] = [];
@@ -47,12 +49,24 @@ export class PopUpComponent implements OnChanges {
     private userService: UsersService,
     private router: Router
   ) {}
-  ngOnChanges(changes: SimpleChanges) {}
+  ngOnChanges(changes: SimpleChanges) {
+    this.getGroups()
+  }
 
   removeSideDisplay() {
     this.show = false;
   }
 
+  async getGroups() {
+    try {
+      let res: APIarray<viewgroup> = await lastValueFrom(
+        this.groupService.getGroups()
+      );
+      this.groups= res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async crateGroupFunction() {
     try {
       let res: ApiResponse<groupRes> = await lastValueFrom(
@@ -73,29 +87,5 @@ export class PopUpComponent implements OnChanges {
       console.log(error);
     }
   }
-  onChange(event: any) {}
-
-  onUpload(event: any) {
-    this.selectedFiles = Array.from(event.target.files);
-  }
-
-  //   async uploadFiles() {
-  //     const formData = new FormData();
-  //     this.selectedFiles.forEach((file) => {
-  //       formData.append('file_path', file);
-  //     });
-  //     let res: any = await lastValueFrom(this.filesService.uploadFile(formData));
-  //     console.log(res);
-  //   }
-  // }
-  uploadFiles() {
-    const formData = new FormData();
-    this.selectedFiles.forEach((file) => {
-      formData.append('file_path', file);
-    });
-    let url = `${environment.apiUrl}/${environment.groupName}/upload-file`;
-    this.http.post<any>(url, formData).subscribe({
-      next: (res) => console.log('Uploaded successfully', res),
-    });
-  }
+  
 }
