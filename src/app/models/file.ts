@@ -4,6 +4,7 @@ export class file {
   file_path?: string;
   group_id?: number;
   owner_id?: number;
+  versions?: number;
   updated_at?: string;
   created_at?: string;
   id?: number;
