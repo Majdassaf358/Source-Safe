@@ -9,6 +9,7 @@ import { checkIn } from '../models/check-in';
 import { fileDetails } from '../models/file_details';
 import { nodata } from '../models/nodata';
 import { file_changes } from '../models/file-changes';
+import { ApiResponse } from '../models/ApiResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -24,19 +25,19 @@ export class FilesService {
     let url = `${environment.apiUrl}/${groupName}/check-in`;
     return this.http.post<any>(url, { files_id});
   }
-  public checkOut(formData: any): Observable<any> {
-    let url = `${environment.apiUrl}/${environment.groupName}/check-out`;
-    return this.http.post<any>(url, { file_path: formData });
+  public checkOut(groupName:string,formData: any,fileId?:number): Observable<ApiResponse<file_changes>> {
+    let url = `${environment.apiUrl}/${groupName}/check-out/${fileId}`;
+    return this.http.post<ApiResponse<file_changes>>(url, formData );
   }
   public getFiles(groupName:string): Observable<APIarray<viewfile>> {
     let url = `${environment.apiUrl}/${groupName}/view-files`;
     return this.http.get<APIarray<viewfile>>(url);
   }
-  public viewFileDetails(groupName:string,fileId:number): Observable<APIarray<fileDetails>> {
+  public viewFileDetails(groupName:string,fileId?:number): Observable<APIarray<fileDetails>> {
     let url = `${environment.apiUrl}/${groupName}/view-file-details/${fileId}`;
     return this.http.get<APIarray<fileDetails>>(url);
   }
-  public seeChanges(groupName:string,fileId:number): Observable<APIarray<file_changes>> {
+  public seeChanges(groupName:string,fileId?:number): Observable<APIarray<file_changes>> {
     let url = `${environment.apiUrl}/${groupName}/see-changes/${fileId}`;
     return this.http.get<APIarray<file_changes>>(url);
   }

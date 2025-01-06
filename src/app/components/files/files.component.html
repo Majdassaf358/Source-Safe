@@ -2,23 +2,23 @@
   <div class="users-header">
     <h1 class="user-title">Files</h1>
     <div>
-      <input type="file" (change)="onFileSelected($event)">
-      <button [disabled]="!selectedFiles.length" class="btn btn-success" (click)="uploadFiles()">Upload</button>
+      <!-- <input type="file" (change)="onFileSelected($event)">
+      <button [disabled]="!selectedFiles.length" class="btn btn-success" (click)="uploadFiles()">Upload</button> -->
     </div>
-    <button
+    <!-- <button
       class="users-buttons"
       *ngIf="mode == 'default'"
       (click)="enableSelect()"
     >
       Select
-    </button>
-    <input
+    </button> -->
+    <!-- <input
       class="users-inputs"
       *ngIf="mode == 'select'"
       type="checkbox"
       [(ngModel)]="tem"
       (change)="temporary()"
-    />
+    /> -->
   </div>
   <div class="user-table-container">
     <table class="user-table">
@@ -38,30 +38,14 @@
           <td>{{ file.file_owner?.username }}</td>
           <td *ngIf="mode == 'default'">
             <button class="details-button" (click)="addNumberToCheckIn(file.id)">Check in</button>
+            <!-- <input type="file" (change)="onFileSelectedCheckOut($event)"> -->
+            <button class="details-button" (click)="addNumberToCheckOut(file.id)">Check Out</button>
+            <button class="details-button" (click)="viewFileDetails(file.id)">File details</button>
+            <button class="details-button" (click)="viewChanges(file.id)">See Changes</button>
           </td>
-          <td *ngIf="mode == 'select'">
-            <input
-              class="users-inputs"
-              type="checkbox"
-              [(ngModel)]="tem[i]"
-              (change)="temporary()"
-            />
-          </td>
+          
         </tr>
       </tbody>
     </table>
   </div>
-  <button
-    class="users-buttons"
-    *ngIf="mode == 'select'"
-    (click)="desaibleSelect()"
-  >
-    Cancel
-  </button>
-  <button
-    class="users-buttons"
-    *ngIf="mode == 'select'"
-    (click)="checkIn(); $event.stopPropagation()"
-  >
-    Invite
-  </button>
+  
