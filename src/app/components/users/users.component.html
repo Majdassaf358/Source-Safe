@@ -27,23 +27,23 @@
         <tr>
           <th>ID</th>
           <th>Username</th>
-          <th>Action</th>
+          <th *ngIf="mode == 'select'">Action</th>
         </tr>
       </thead>
       <tbody id="user-table-body">
         <tr *ngFor="let user of users; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ user.username }}</td>
-          <td *ngIf="mode == 'select'">
-            <input
-              class="users-inputs"
-              type="checkbox"
-              [(ngModel)]="selected[i]"
-              (change)="checkBoxChanged(i)"
-            />
-          </td>
-          <td *ngIf="mode == 'default'">
-            <button class="details-button">Show Profile</button>
+            <td *ngIf="user.id != profile.id && mode == 'select'">
+              <input
+                class="users-inputs"
+                type="checkbox"
+                [(ngModel)]="selected[i]"
+                (change)="checkBoxChanged(i)"
+              />
+            </td>
+          <td *ngIf="user.id == profile.id && mode == 'select'">
+            <p class="select-you">You</p>
           </td>
         </tr>
       </tbody>

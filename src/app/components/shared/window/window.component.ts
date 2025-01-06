@@ -17,19 +17,19 @@ export class WindowComponent {
 
       setTimeout(() => {
         snackbar.className = snackbar.className.replace('show', '');
-      }, 3000); // Hide snackbar after 3 seconds
+      }, 3000); 
     }
   }
 
   validateForm(): boolean {
-    // Get form elements
+   
     const email = document.getElementById('email') as HTMLInputElement;
     const password = document.getElementById('password') as HTMLInputElement;
 
-    // Reset messages
+    
     let isValid = true;
 
-    // Validate email
+   
     if (!email.value) {
       this.showSnackbar('Email is required.');
       isValid = false;
@@ -38,7 +38,7 @@ export class WindowComponent {
       isValid = false;
     }
 
-    // Validate password
+   
     if (!password.value) {
       this.showSnackbar('Password is required.');
       isValid = false;
@@ -47,10 +47,10 @@ export class WindowComponent {
       isValid = false;
     }
 
-    return isValid; // If valid, submit form
+    return isValid; 
   }
 
-  // Function to validate email
+  
   validateEmail(email: string): boolean {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());

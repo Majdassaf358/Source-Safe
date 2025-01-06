@@ -9,6 +9,8 @@ import { APIarray } from '../../models/APIarray';
 import { ActivatedRoute } from '@angular/router';
 import { ApiResponse } from '../../models/ApiResponse';
 import { users } from '../../models/users';
+import { profile } from '../../models/profile';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-users',
@@ -28,13 +30,16 @@ export class UsersComponent implements OnInit {
   users_id: number[] = [];
   mode: string = '';
   selectAll: boolean = false;
+  profile: profile = new profile;
 
   constructor(
     private userService: UsersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private profileService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
+    this.getProfile();
     this.route.paramMap.subscribe((paramsMap) => {
       this.groupName = paramsMap.get('groupName') || '';
       if (this.groupName == 'all') {
@@ -46,7 +51,16 @@ export class UsersComponent implements OnInit {
       }
     });
   }
-
+  async getProfile() {
+    try {
+      let res: ApiResponse<profile> = await lastValueFrom(
+        this.profileService.getProfile()
+      );
+      this.profile = res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   enableSelect() {
     this.mode = 'select';
   }
