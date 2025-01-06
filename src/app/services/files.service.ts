@@ -6,6 +6,9 @@ import { environment } from '../models/environments';
 import { Observable } from 'rxjs';
 import { viewfile } from '../models/viewfile';
 import { checkIn } from '../models/check-in';
+import { fileDetails } from '../models/file_details';
+import { nodata } from '../models/nodata';
+import { file_changes } from '../models/file-changes';
 
 @Injectable({
   providedIn: 'root',
@@ -29,20 +32,20 @@ export class FilesService {
     let url = `${environment.apiUrl}/${groupName}/view-files`;
     return this.http.get<APIarray<viewfile>>(url);
   }
-  public getFiles1(groupName:string): Observable<APIarray<viewfile>> {
-    let url = `${environment.apiUrl}/${groupName}/view-files`;
-    return this.http.get<APIarray<viewfile>>(url);
+  public viewFileDetails(groupName:string,fileId:number): Observable<APIarray<fileDetails>> {
+    let url = `${environment.apiUrl}/${groupName}/view-file-details/${fileId}`;
+    return this.http.get<APIarray<fileDetails>>(url);
   }
-  public getFiles2(groupName:string): Observable<APIarray<viewfile>> {
-    let url = `${environment.apiUrl}/${groupName}/view-files`;
-    return this.http.get<APIarray<viewfile>>(url);
+  public seeChanges(groupName:string,fileId:number): Observable<APIarray<file_changes>> {
+    let url = `${environment.apiUrl}/${groupName}/see-changes/${fileId}`;
+    return this.http.get<APIarray<file_changes>>(url);
   }
-  public getFiles3(groupName:string): Observable<APIarray<viewfile>> {
-    let url = `${environment.apiUrl}/${groupName}/view-files`;
-    return this.http.get<APIarray<viewfile>>(url);
+  public seeUserChanges(groupName:string,fileId:number,userId:number): Observable<APIarray<file_changes>> {
+    let url = `${environment.apiUrl}/${groupName}/see-user-changes/${fileId}/${userId}`;
+    return this.http.get<APIarray<file_changes>>(url);
   }
-  public getFiles4(groupName:string): Observable<APIarray<viewfile>> {
-    let url = `${environment.apiUrl}/${groupName}/view-files`;
-    return this.http.get<APIarray<viewfile>>(url);
+  public deleteFile(groupName:string,fileId:number): Observable<nodata> {
+    let url = `${environment.apiUrl}/${groupName}/delete-file/${fileId}`;
+    return this.http.get<nodata>(url);
   }
 }
