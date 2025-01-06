@@ -6,8 +6,10 @@
       class="pagination-btn create-button"
       (click)="openPopUpCreate(); $event.stopPropagation()"
     >
-      create group
+      Create Group
     </button>
+    <button *ngIf="mode === 'all'" class="pagination-btn create-button" [routerLink]="['/groups', 'my']">View My Groups</button>
+    <button *ngIf="mode === 'my'" class="pagination-btn create-button" [routerLink]="['/groups', 'all']">View All Groups</button>
   </div>
   <div class="table-container">
     <table class="groups-table">
@@ -31,7 +33,7 @@
           <td>
             <a
               class="details-button"
-              [routerLink]="['/groups/users', group.name]"
+              [routerLink]="['/users', group.name]"
               >Members</a
             >
             <a

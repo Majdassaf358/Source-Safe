@@ -6,7 +6,7 @@
   <div class="users-header">
     <h1 class="user-title">Users</h1>
     <button
-      class="users-buttons"
+      class="pagination-btn create-button"
       *ngIf="mode == 'default'"
       (click)="enableSelect()"
     >
@@ -32,7 +32,7 @@
       </thead>
       <tbody id="user-table-body">
         <tr *ngFor="let user of users; let i = index">
-          <td>{{ user.id }}</td>
+          <td>{{ i + 1 }}</td>
           <td>{{ user.username }}</td>
           <td *ngIf="mode == 'select'">
             <input

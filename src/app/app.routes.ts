@@ -23,15 +23,11 @@ export const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'groups',
+    path: 'groups/:allOrMy',
     component: GroupsComponent,
   },
   {
-    path: 'groups/users/:groupName',
-    component: UsersComponent,
-  },
-  {
-    path: 'groups/users/:groupName',
+    path: 'users/:groupName',
     component: UsersComponent,
   },
   {

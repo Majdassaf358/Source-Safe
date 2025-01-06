@@ -90,7 +90,6 @@ export class UsersComponent implements OnInit {
       this.groupUsers = res.data;
       this.users = this.groupUsers.users || [];
       this.selected = new Array(this.users.length).fill(false);
-      console.log(this.groupUsers);
     } catch (error) {
       console.log(error);
     }
