@@ -33,8 +33,11 @@
       <tbody id="user-table-body">
         <tr *ngFor="let user of users; let i = index">
           <td>{{ i + 1 }}</td>
-          <td *ngFor="let admin of groupAdmin">{{ user.username }} <ng-container *ngIf="user.id == admin.admin_id"> (Admin)</ng-container>
-          </td>
+          <td *ngIf="mode != 'noInvite'">{{ user.username }} </td>
+          <ng-container *ngIf="mode == 'noInvite'">
+            <td *ngFor="let admin of groupAdmin">{{ user.username }} <ng-container *ngIf="user.id == admin.admin_id"> (Admin)</ng-container></td>
+          </ng-container>
+          
             <td *ngIf="user.id != profile.id && mode == 'select'">
               <input
                 class="users-inputs"

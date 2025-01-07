@@ -1,7 +1,7 @@
 <app-pop-up [show]="showPopUp" [display]="displayPopUp"> </app-pop-up>
 <div class="group-container">
   <div class="groups-title">
-    <h1 class="title">Groups</h1>
+    <h1 class="title">{{ 'Groups' | translate }}</h1>
     <button
       class="pagination-btn create-button"
       (click)="openPopUpCreate(); $event.stopPropagation()"

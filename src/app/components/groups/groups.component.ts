@@ -8,11 +8,14 @@ import { GroupsService } from '../../services/groups.service';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MessagesService } from '../../services/messages.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-groups',
   standalone: true,
-  imports: [PopUpComponent, FormsModule, CommonModule, RouterModule],
+  imports: [PopUpComponent, FormsModule, CommonModule, RouterModule,
+    TranslateModule,
+  ],
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.css',
 })
