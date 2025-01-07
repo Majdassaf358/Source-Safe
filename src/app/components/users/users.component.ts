@@ -14,6 +14,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { MessagesService } from '../../services/messages.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { group_admin } from '../../models/group_admin';
 
 @Component({
   selector: 'app-users',
@@ -27,6 +28,7 @@ export class UsersComponent implements OnInit {
   display: string = '';
   groupName: string = '';
   users: viewuser[] = [];
+  groupAdmin?:group_admin[]=[];
   groupUsers: users = new users();
   selected: boolean[] = [];
 
@@ -110,6 +112,7 @@ export class UsersComponent implements OnInit {
         this.userService.getGroupUsers(name)
       );
       this.groupUsers = res.data;
+      this.groupAdmin = this.groupUsers.admin;
       this.users = this.groupUsers.users || [];
       this.selected = new Array(this.users.length).fill(false);
     } catch (error) {
