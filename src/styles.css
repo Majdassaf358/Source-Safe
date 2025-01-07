@@ -421,3 +421,7 @@
   visibility: visible;
   opacity: 1;
 }
+.form-control{
+  width: 95%;
+  margin: 1em;
+}

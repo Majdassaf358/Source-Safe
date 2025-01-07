@@ -23,6 +23,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../models/environments';
 import { viewgroup } from '../../models/viewgroup';
 import { MessagesService } from '../../services/messages.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { profile } from '../../models/profile';
 
 @Component({
   selector: 'app-pop-up',
@@ -42,6 +44,7 @@ export class PopUpComponent implements OnChanges {
   inviteInfo: sendinvite[] = [];
   selectedFiles: File[] = [];
   uploadedFiles: file[] = [];
+  profile: profile = new profile();
 
   constructor(
     private http: HttpClient,
@@ -49,10 +52,12 @@ export class PopUpComponent implements OnChanges {
     private filesService: FilesService,
     private userService: UsersService,
     private messageService: MessagesService,
+    private profileService: AuthenticationService,
     private router: Router
   ) {}
   ngOnChanges(changes: SimpleChanges) {
-    this.getGroups()
+    this.getMyGroups();
+    this.getProfile();
   }
   showMessage(message: string) {
     this.messageService.show(message);
@@ -61,10 +66,20 @@ export class PopUpComponent implements OnChanges {
     this.show = false;
   }
 
-  async getGroups() {
+  async getProfile() {
+    try {
+      let res: ApiResponse<profile> = await lastValueFrom(
+        this.profileService.getProfile()
+      );
+      this.profile = res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async getMyGroups() {
     try {
       let res: APIarray<viewgroup> = await lastValueFrom(
-        this.groupService.getGroups()
+        this.groupService.getMyGroups()
       );
       this.groups= res.data;
     } catch (error) {
@@ -88,6 +103,8 @@ export class PopUpComponent implements OnChanges {
         this.userService.inviteUser(this.groupName, this.users_ids)
       );
       this.inviteInfo = res.data;
+      this.showMessage(`${res.message}`);
+      this.show = false;
     } catch (error) {
       console.log(error);
     }

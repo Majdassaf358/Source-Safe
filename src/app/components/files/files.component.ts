@@ -129,6 +129,7 @@ export class FilesComponent implements OnInit{
       );
       this.fileDetailsInfo = res.data;
       console.log(this.fileDetailsInfo );
+      
     } catch (error) {
       console.log(error);
     }

@@ -11,6 +11,9 @@ import { ApiResponse } from '../../models/ApiResponse';
 import { users } from '../../models/users';
 import { profile } from '../../models/profile';
 import { AuthenticationService } from '../../services/authentication.service';
+import { MessagesService } from '../../services/messages.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -35,7 +38,9 @@ export class UsersComponent implements OnInit {
   constructor(
     private userService: UsersService,
     private route: ActivatedRoute,
-    private profileService: AuthenticationService
+    private messageService: MessagesService,
+    private profileService: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +51,7 @@ export class UsersComponent implements OnInit {
         this.mode = 'default';
         this.getAllUsers();
       } else {
-        this.mode = 'default';
+        this.mode = 'noInvite';
         this.getGroupUsers(this.groupName);
       }
     });
@@ -60,6 +65,9 @@ export class UsersComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+  showMessage(message: any) {
+    this.messageService.show(message);
   }
   enableSelect() {
     this.mode = 'select';
@@ -105,7 +113,12 @@ export class UsersComponent implements OnInit {
       this.users = this.groupUsers.users || [];
       this.selected = new Array(this.users.length).fill(false);
     } catch (error) {
-      console.log(error);
+      this.showMessage(error)
+      if (error instanceof HttpErrorResponse) {
+        this.showMessage(error.error.message || 'An error occurred');
+        this.router.navigate(['/groups','all']);
+      }
+      else console.log(error);
     }
   }
   openInvite() {

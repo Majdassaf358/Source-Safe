@@ -20,13 +20,14 @@
 
     <ng-container *ngIf="display == 'invite'">
       <div class="create-group-container">
-        <h1>Invite to:</h1>
+        <h1>Invite to Group:</h1>
         <form>
-          <label for="groupName">Group Name: </label>
           <select class="form-control" [(ngModel)]="groupName" name="group-name" >
-            <option value="{{group.name}}" *ngFor="let group of groups">
+            <ng-container *ngFor="let group of groups" >
+            <option value="{{group.name}}" *ngIf="group.admin_id == profile.id">
               {{group.name}}
             </option>
+          </ng-container>
           </select>
           <button type="submit" class="upload-btn" (click)="sendInvite()">
             Invite Users
