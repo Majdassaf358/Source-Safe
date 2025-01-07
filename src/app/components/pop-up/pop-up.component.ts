@@ -22,6 +22,7 @@ import { NgxFileDropEntry, NgxFileDropModule } from 'ngx-file-drop';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../models/environments';
 import { viewgroup } from '../../models/viewgroup';
+import { MessagesService } from '../../services/messages.service';
 
 @Component({
   selector: 'app-pop-up',
@@ -47,12 +48,15 @@ export class PopUpComponent implements OnChanges {
     private groupService: GroupsService,
     private filesService: FilesService,
     private userService: UsersService,
+    private messageService: MessagesService,
     private router: Router
   ) {}
   ngOnChanges(changes: SimpleChanges) {
     this.getGroups()
   }
-
+  showMessage(message: string) {
+    this.messageService.show(message);
+  }
   removeSideDisplay() {
     this.show = false;
   }
@@ -73,6 +77,7 @@ export class PopUpComponent implements OnChanges {
         this.groupService.createGroup(this.groupName)
       );
       this.show = false;
+      this.showMessage('Group created');
     } catch (error) {
       console.log(error);
     }

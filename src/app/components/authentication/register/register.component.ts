@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
       this.registerReq = res.data;
       this.token = res.data.token || '';
       localStorage.setItem('Token', this.token);
-      this.router.navigate(['/groups']);
+      this.router.navigate(['/groups','all']);
     } catch (error) {
       console.log(error);
     }

@@ -7,6 +7,7 @@ import { lastValueFrom } from 'rxjs';
 import { GroupsService } from '../../services/groups.service';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { MessagesService } from '../../services/messages.service';
 
 @Component({
   selector: 'app-groups',
@@ -21,7 +22,8 @@ export class GroupsComponent implements OnInit {
   groups: viewgroup[] = [];
   mode:string = '';
   constructor(private groupService: GroupsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notificationService: MessagesService
   ) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramsMap) => {
@@ -35,6 +37,9 @@ export class GroupsComponent implements OnInit {
   }
     // this.getGroups();
   
+    showMessage(message: string) {
+      this.notificationService.show(message);
+    }
   openPopUpUpload() {
     this.showPopUp = true;
     this.displayPopUp = 'upload';
