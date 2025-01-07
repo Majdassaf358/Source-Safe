@@ -224,12 +224,12 @@
   }
   .flags-list:hover .the-list {
     display: block;
-    width: 140px;
+    width: 90px;
   }
   .the-list {
     position: absolute;
-    top: 73px;
-    right: 15px;
+    top: 80px;
+    right: 30px;
     cursor: pointer;
     background: #fff;
     border-radius: 15%;
@@ -247,7 +247,7 @@
     height: 35px;
   }
   .flag-language {
-    width: 50px;
+    /* width: 50px; */
   }
 
   .selected-language {

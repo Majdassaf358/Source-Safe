@@ -31,11 +31,11 @@
       <li>
         <div class="flags-list">
           <div class="flag-language">
-            <img
+            <!-- <img
               class="top-flag"
               src="{{ selectedFlag }}"
               (change)="changeLan($event)"
-            />
+            /> -->
           </div>
           <div class="selected-language">
             {{ selectedlang | translate }}
@@ -48,7 +48,7 @@
                 (click)="changeLan(flag.lang)"
               >
                 <div class="flag-language">
-                  <img class="list-flags" src="{{ flag.src }}" />
+                  <!-- <img class="list-flags" src="{{ flag.src }}" /> -->
                 </div>
                 <a>{{ flag.language | translate }}</a>
               </div>

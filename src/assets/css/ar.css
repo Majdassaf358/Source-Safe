@@ -1,2 +1,6 @@
 /* body {
 } */
+.the-list {
+    right: auto;
+    left: 30px !important;
+}
