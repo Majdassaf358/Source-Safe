@@ -13,11 +13,12 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import { file_changes } from '../../models/file-changes';
 import { ApiResponse } from '../../models/ApiResponse';
 import { fileDetails } from '../../models/file_details';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-files',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,TranslateModule],
   templateUrl: './files.component.html',
   styleUrl: './files.component.css'
 })
@@ -156,10 +157,10 @@ export class FilesComponent implements OnInit{
       headers : new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Origin':'http://localhost:4200',
         'Access-Control-Allow-Methods': '*',
         'Access-Control-Allow-Headers': '*',
-        Authorization: 'Bearer 5|UCiF4PiheqiSBLwqnDV4YSu7PQqaO7sJXE9yH14ra8e63381'
+        'Access-Control-Allow-Credentials':'true'
       })
     }
     const formData = new FormData();
@@ -168,7 +169,7 @@ export class FilesComponent implements OnInit{
       formData.append("file",this.currentFile);
     }
   
-    this.http.post(`http://localhost/api/${this.groupName}/upload-file`,formData)
+    this.http.post(`http://localhost/api/${this.groupName}/upload-file`,formData , reqOptions)
     .subscribe({
       next:(res)=>{
         console.log('success',res);

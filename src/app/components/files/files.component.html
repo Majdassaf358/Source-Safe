@@ -1,9 +1,9 @@
 <div class="user-container">
   <div class="users-header">
-    <h1 class="user-title">Files</h1>
+    <h1 class="user-title">{{ 'Files' | translate }}</h1>
     <div>
-      <!-- <input type="file" (change)="onFileSelected($event)">
-      <button [disabled]="!selectedFiles.length" class="btn btn-success" (click)="uploadFiles()">Upload</button> -->
+      <input type="file" (change)="onFileSelected($event)">
+      <button [disabled]="!selectedFiles.length" class="btn btn-success" (click)="uploadFiles()">Upload</button>
     </div>
     <!-- <button
       class="users-buttons"

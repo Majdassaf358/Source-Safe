@@ -15,11 +15,13 @@ import { MessagesService } from '../../services/messages.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { group_admin } from '../../models/group_admin';
+import { TranslateModule } from '@ngx-translate/core';
+import { nodata } from '../../models/nodata';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [PopUpComponent, FormsModule, CommonModule],
+  imports: [PopUpComponent, FormsModule, CommonModule,TranslateModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
@@ -101,6 +103,15 @@ export class UsersComponent implements OnInit {
       );
       this.users = res.data;
       this.selected = new Array(this.users.length).fill(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async deleteUser(userName?:string) {
+    try {
+      let res: ApiResponse<nodata> = await lastValueFrom(
+        this.userService.kickFromGroup(this.groupName,userName)
+      );
     } catch (error) {
       console.log(error);
     }

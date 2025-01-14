@@ -37,7 +37,7 @@ export class UsersService {
   }
   public kickFromGroup(
     groupName: string,
-    userName: string
+    userName?: string
   ): Observable<ApiResponse<nodata>> {
     let url = `${environment.apiUrl}/${groupName}/kick-from-group/${userName}`;
     return this.http.get<ApiResponse<nodata>>(url);
