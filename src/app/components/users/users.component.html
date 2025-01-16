@@ -27,7 +27,7 @@
         <tr>
           <th>ID</th>
           <th>Username</th>
-          <th *ngIf="mode == 'select'">Action</th>
+          <th *ngIf="mode === 'select'">Action</th>
           <ng-container *ngFor="let admin of groupAdmin"><th *ngIf="profile.id==admin.admin_id">Action</th></ng-container>
         </tr>
       </thead>

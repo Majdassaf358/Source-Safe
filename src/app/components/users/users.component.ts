@@ -58,6 +58,7 @@ export class UsersComponent implements OnInit {
         this.mode = 'noInvite';
         this.getGroupUsers(this.groupName);
       }
+      console.log(this.mode);
     });
   }
   async getProfile() {
