@@ -7,6 +7,7 @@ import { UsersComponent } from './components/users/users.component';
 import { FilesComponent } from './components/files/files.component';
 import { InvitesComponent } from './components/invites/invites.component';
 import { WindowComponent } from './components/shared/window/window.component';
+import { FileChangesComponent } from './components/file-changes/file-changes.component';
 
 export const routes: Routes = [
   {
@@ -33,6 +34,10 @@ export const routes: Routes = [
   {
     path: 'groups/files/:groupName',
     component: FilesComponent,
+  },
+  {
+    path: 'groups/files/:groupName/:fileID',
+    component: FileChangesComponent,
   },
   {
     path: 'profile',

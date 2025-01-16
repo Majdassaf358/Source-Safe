@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { APIarray } from '../../models/APIarray';
 import { viewfile } from '../../models/viewfile';
 import { FilesService } from '../../services/files.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { error } from 'console';
 import { checkIn } from '../../models/check-in';
@@ -18,7 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-files',
   standalone: true,
-  imports: [FormsModule, CommonModule,TranslateModule],
+  imports: [FormsModule, CommonModule,TranslateModule,RouterModule],
   templateUrl: './files.component.html',
   styleUrl: './files.component.css'
 })
