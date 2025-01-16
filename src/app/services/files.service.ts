@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { APIarray } from '../models/APIarray';
 import { file } from '../models/file';
@@ -17,6 +17,14 @@ import { ApiResponse } from '../models/ApiResponse';
 export class FilesService {
   constructor(private http: HttpClient) {}
 
+  public downloadFile(groupName:string,fileId?: number): Observable<Blob> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    let url = `${environment.apiUrl}/${groupName}/download`;
+    return this.http.post(url, { file_id: fileId }, { headers, responseType: 'blob' });
+
+  }
+
+
   public uploadFile(formData: any): Observable<any> {
     let url = `${environment.apiUrl}/${environment.groupName}/upload-file`;
     return this.http.post<any>(url, { file_path: formData });
@@ -24,6 +32,10 @@ export class FilesService {
   public checkIn(groupName:string,files_id:number[]): Observable<APIarray<checkIn>> {
     let url = `${environment.apiUrl}/${groupName}/check-in`;
     return this.http.post<any>(url, { files_id});
+  }
+  public downloadtest(groupName:string,file_id?:number): Observable<string> {
+    let url = `${environment.apiUrl}/${groupName}/download`;
+    return this.http.post<any>(url, { file_id});
   }
   public checkOut(groupName:string,formData: any,fileId?:number): Observable<ApiResponse<file_changes>> {
     let url = `${environment.apiUrl}/${groupName}/check-out/${fileId}`;

@@ -27,6 +27,7 @@ export class FilesComponent implements OnInit{
   groupName: string = '';
     mode:string='default';
     tem:string='';
+    test:string='';
     files: viewfile[] = [];
     checkInFiles: number[]= [];
     checkInRes:checkIn[] = [];
@@ -99,6 +100,22 @@ export class FilesComponent implements OnInit{
       console.log(error);
     }
   }
+  async download(fileId?:number){
+    this.fileService.downloadFile(this.groupName,fileId).subscribe(
+      (blob: Blob) => {
+        const a = document.createElement('a');
+        const objectUrl = URL.createObjectURL(blob);
+        a.href = objectUrl;
+        a.download = 'bbb.txt'; // Replace with desired file name
+        a.click();
+        URL.revokeObjectURL(objectUrl);
+      },
+      (error) => {
+        console.error('File download error:', error);
+      }
+    );
+  }
+
   async checkIn(){
     try{
       let res: APIarray<checkIn> = await lastValueFrom(
