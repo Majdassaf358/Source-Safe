@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MessagesService } from '../../services/messages.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthenticationService } from '../../services/authentication.service';
+import { profile } from '../../models/profile';
+import { ApiResponse } from '../../models/ApiResponse';
 
 @Component({
   selector: 'app-groups',
@@ -24,8 +27,11 @@ export class GroupsComponent implements OnInit {
   displayPopUp: string = '';
   groups: viewgroup[] = [];
   mode:string = '';
+  profile: profile = new profile;
+
   constructor(private groupService: GroupsService,
     private route: ActivatedRoute,
+    private profileService: AuthenticationService,
     private notificationService: MessagesService
   ) {}
   ngOnInit(): void {
@@ -38,7 +44,16 @@ export class GroupsComponent implements OnInit {
       }
     });
   }
-    // this.getGroups();
+  async getProfile() {
+    try {
+      let res: ApiResponse<profile> = await lastValueFrom(
+        this.profileService.getProfile()
+      );
+      this.profile = res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
     showMessage(message: string) {
       this.notificationService.show(message);
@@ -72,7 +87,11 @@ export class GroupsComponent implements OnInit {
       console.log(error);
     }
   }
+  deletegroup(){
+    
+  }
 
+ 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
     const targetElement = event.target as Element;

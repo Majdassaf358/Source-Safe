@@ -84,7 +84,7 @@ export class UsersComponent implements OnInit {
     this.selected = this.users.map(() => this.selectAll);
     this.updateSelectedUsers();
   }
-  checkBoxChanged(i: number) {
+  checkBoxChanged() {
     this.selectAll = this.selected.every((isSelected) => isSelected);
     this.updateSelectedUsers();
   }
@@ -113,6 +113,8 @@ export class UsersComponent implements OnInit {
       let res: ApiResponse<nodata> = await lastValueFrom(
         this.userService.kickFromGroup(this.groupName,userName)
       );
+      this.showMessage('User Got Kicked');
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -140,8 +142,16 @@ export class UsersComponent implements OnInit {
     this.showPopUp = true;
     this.display = 'invite';
   }
-  deletegroup(){
-    
+  async exitgroup(){
+    try {
+      let res: ApiResponse<nodata> = await lastValueFrom(
+        this.userService.exitGroup(this.groupName)
+      );
+      this.showMessage('You Exited The Group');
+      this.router.navigate(['/groups','all']);  
+    } catch (error) {
+      console.log(error);
+    }
   }
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {

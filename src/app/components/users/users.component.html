@@ -12,7 +12,14 @@
     >
       Invite
     </button>
-
+    <ng-container *ngFor="let admin of groupAdmin">
+    <button *ngIf="profile.id!=admin.admin_id"
+      class="exit-button"
+      (click)="exitgroup()"
+    >
+      Exit Group
+    </button>
+  </ng-container>
     <input
       class="users-inputs"
       *ngIf="mode == 'select'"
@@ -44,13 +51,19 @@
                 class="users-inputs"
                 type="checkbox"
                 [(ngModel)]="selected[i]"
-                (change)="checkBoxChanged(i)"
+                (change)="checkBoxChanged()"
               />
             </td>
           <td *ngIf="user.id == profile.id && mode == 'select'">
             <p class="select-you">You</p>
           </td>
-          <ng-container *ngFor="let admin of groupAdmin"><td *ngIf="profile.id==admin.admin_id && user.id != profile.id"><button class="kick-button" (click)="deleteUser(user.username)">Kick</button></td></ng-container>
+          <ng-container *ngFor="let admin of groupAdmin">
+            <td *ngIf="profile.id==admin.admin_id && user.id != profile.id">
+              <button class="kick-button" (click)="deleteUser(user.username)">
+                Kick
+              </button>
+            </td>
+          </ng-container>
         </tr>
       </tbody>
     </table>

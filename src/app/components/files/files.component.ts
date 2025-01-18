@@ -68,15 +68,11 @@ export class FilesComponent implements OnInit{
   }
   temporary(){}
 
-  addNumberToCheckIn(id?:number){
-    this.checkInFiles.push(id || 0);
-    this.checkIn();
-  }
   addNumberToCheckOut(id?:number){
     this.checkOutFileNumber=id;
     this.checkOut();
   }
-
+  
   onFileSelectedCheckOut(event:any){
     this.checkOutFile = event.target.files[0];
   }
@@ -84,7 +80,7 @@ export class FilesComponent implements OnInit{
     const checkOutData = new FormData;
     checkOutData.append('file_path', this.checkOutFile);
     // checkOutData.append('description','checkOutDescrirtion' );
-
+    
     console.log(this.checkOutFile);
     checkOutData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
@@ -100,28 +96,32 @@ export class FilesComponent implements OnInit{
       console.log(error);
     }
   }
-  async download(fileId?:number){
+  addNumberToCheckIn(id:number,fileName:string){
+    this.checkInFiles.push(id || 0);
+    this.checkIn(fileName);
+  }
+  async download(fileId:number[],fileName:string){
     this.fileService.downloadFile(this.groupName,fileId).subscribe(
       (blob: Blob) => {
         const a = document.createElement('a');
         const objectUrl = URL.createObjectURL(blob);
         a.href = objectUrl;
-        a.download = 'bbb.txt'; // Replace with desired file name
+        a.download = fileName;
         a.click();
         URL.revokeObjectURL(objectUrl);
       },
       (error) => {
         console.error('File download error:', error);
-      }
-    );
-  }
-
-  async checkIn(){
+    }
+  );
+}
+  async checkIn(fileName:string){
     try{
       let res: APIarray<checkIn> = await lastValueFrom(
         this.fileService.checkIn(this.groupName,this.checkInFiles)
       );
       this.checkInRes=res.data;
+    this.download(this.checkInFiles,fileName);
       console.log("checkIn true",res.data);
     }
     catch (error){
@@ -132,7 +132,7 @@ export class FilesComponent implements OnInit{
   async viewChanges(fileId?:number) {
     try {
       let res: APIarray<file_changes> = await lastValueFrom(
-        this.fileService.seeChanges(this.groupName,fileId)
+        this.fileService.compareFiles(this.groupName,fileId)
       );
       this.fileChanges = res.data;
       console.log(this.fileChanges );

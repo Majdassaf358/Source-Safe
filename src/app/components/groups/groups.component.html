@@ -41,6 +41,7 @@
               [routerLink]="['/groups/files', group.name]"
               >Files</a
             >
+            <button *ngIf="profile.id == group.admin_id" class="kick-button" (click)="deletegroup()">Kick</button>
           </td>
         </tr>
       </tbody>
