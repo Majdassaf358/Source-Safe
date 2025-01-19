@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
       this.loginReq = res.data;
       this.token = res.data.token || '';
       localStorage.setItem('Token', this.token);
-      this.router.navigate(['/groups','all']);
+      this.router.navigate(['/groups','my']);
     } catch (error) {
       console.log(error);
     }
