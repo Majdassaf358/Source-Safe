@@ -21,15 +21,15 @@ export class FilesService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let url = `${environment.apiUrl}/${groupName}/download`;
     return this.http.post(url, { file_id: fileId }, { headers, responseType: 'blob' });
-  }
+  }
 public checkIn(groupName:string,files_id:number[]): Observable<APIarray<checkIn>> {
   let url = `${environment.apiUrl}/${groupName}/check-in`;
   return this.http.post<any>(url, { files_id});
-}
+  }
 public uploadFile(formData: any): Observable<any> {
   let url = `${environment.apiUrl}/${environment.groupName}/upload-file`;
   return this.http.post<any>(url, { file_path: formData });
-}
+  }
   public downloadtest(groupName:string,file_id?:number): Observable<string> {
     let url = `${environment.apiUrl}/${groupName}/download`;
     return this.http.post<any>(url, { file_id});
@@ -45,6 +45,10 @@ public uploadFile(formData: any): Observable<any> {
   public viewFileDetails(groupName:string,fileId?:number): Observable<APIarray<fileDetails>> {
     let url = `${environment.apiUrl}/${groupName}/view-file-details/${fileId}`;
     return this.http.get<APIarray<fileDetails>>(url);
+  }
+  public viewFileDetailsContent(groupName:string,fileId?:number): Observable<ApiResponse<string>> {
+    let url = `${environment.apiUrl}/${groupName}/view-file-detail-content/${fileId}`;
+    return this.http.get<ApiResponse<string>>(url);
   }
   public compareFiles(groupName:string,fileId?:number): Observable<APIarray<file_changes>> {
     let url = `${environment.apiUrl}/${groupName}/compare-files/${fileId}`;

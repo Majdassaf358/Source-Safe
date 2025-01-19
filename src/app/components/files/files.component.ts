@@ -56,9 +56,7 @@ export class FilesComponent implements OnInit{
     this.route.paramMap.subscribe((paramsMap) => {
       this.groupName = paramsMap.get('groupName') || '';
       this.viewFiles(this.groupName)
-       
     });
-    
   }
   enableSelect(){
     this.mode= 'select'

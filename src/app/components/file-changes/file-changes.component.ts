@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiResponse } from '../../models/ApiResponse';
+import { lastValueFrom } from 'rxjs';
+import { FilesService } from '../../services/files.service';
+import { ActivatedRoute } from '@angular/router';
 
 interface Difference {
   type: string;
@@ -33,6 +37,9 @@ interface ResponseData {
 })
 export class FileChangesComponent implements OnInit  {
 
+  groupName: string = '';
+    fileId:string = '';
+    content:string='';
   response: ResponseData = {
     status: true,
     message: "You've compared the files successfully",
@@ -56,9 +63,34 @@ export class FileChangesComponent implements OnInit  {
         exception: null
     }
 };
+    constructor(
+        private fileService:FilesService,
+        private route: ActivatedRoute,
+    ){
+    }
 
 ngOnInit(): void {
     this.displayResponse();
+
+    this.route.paramMap.subscribe((paramsMap) => {
+        this.groupName = paramsMap.get('groupName') || '';
+        this.fileId = paramsMap.get('fileID') || '';
+        this.getFileContent()
+      });
+}
+
+async getFileContent(){
+    
+    let id:number = parseInt(this.fileId);
+    try {
+        let res: ApiResponse<string> = await lastValueFrom(
+          this.fileService.viewFileDetailsContent(this.groupName,id)
+        );
+        this.content = res.data;
+        console.log(this.content);
+      } catch (error) {
+        console.log(error);
+      }
 }
 
 displayResponse(): void {
