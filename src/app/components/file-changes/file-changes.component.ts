@@ -69,29 +69,16 @@ export class FileChangesComponent implements OnInit  {
     ){
     }
 
-ngOnInit(): void {
-    this.displayResponse();
+  ngOnInit(): void {
+      this.displayResponse();
 
-    this.route.paramMap.subscribe((paramsMap) => {
-        this.groupName = paramsMap.get('groupName') || '';
-        this.fileId = paramsMap.get('fileID') || '';
-        this.getFileContent()
-      });
-}
+      this.route.paramMap.subscribe((paramsMap) => {
+          this.groupName = paramsMap.get('groupName') || '';
+          this.fileId = paramsMap.get('fileID') || '';
+        });
+  }
 
-async getFileContent(){
-    
-    let id:number = parseInt(this.fileId);
-    try {
-        let res: ApiResponse<string> = await lastValueFrom(
-          this.fileService.viewFileDetailsContent(this.groupName,id)
-        );
-        this.content = res.data;
-        console.log(this.content);
-      } catch (error) {
-        console.log(error);
-      }
-}
+
 
 displayResponse(): void {
     const statusMessage = document.getElementById('status-message');

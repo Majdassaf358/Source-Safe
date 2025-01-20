@@ -34,15 +34,15 @@
       <tbody id="user-table-body">
         <tr *ngFor="let file of files; let i = index">
           <td>{{ i + 1  }}</td>
-          <td>{{ file.file_name }}</td>
+          <td>{{ file.id }}</td>
           <td>{{ file.file_owner?.username }}</td>
           <td *ngIf="mode == 'default'">
             <button class="details-button" (click)="addNumberToCheckIn(file.id,file.file_name)">Check in</button>
             <!-- <input type="file" (change)="onFileSelectedCheckOut($event)"> -->
             <!-- <button class="details-button" (click)="addNumberToCheckOut(file.id)">Check Out</button> -->
-            <button class="details-button" (click)="viewFileDetails(file.id)">File details</button>
+            <a class="details-button"  [routerLink]="['/groups/files', groupName,'content',file.id]">File Content</a>
             <!-- <button class="details-button" (click)="download(file.id)">Download</button> -->
-            <a class="details-button"  [routerLink]="['/groups/files', groupName,file.id]">See Changes</a>
+            <a class="details-button"  [routerLink]="['/groups/files', groupName,'changes',file.id]">See Changes</a>
           </td>
           
         </tr>
