@@ -9,7 +9,7 @@
           (click)="goToProfile()"
         />
       </div>
-      <a class="nav-links" [routerLink]="['/groups','all']"> {{ 'Groups' | translate }}</a>
+      <a class="nav-links" [routerLink]="['/groups','my']"> {{ 'Groups' | translate }}</a>
       <a class="nav-links" [routerLink]="['/users', 'all']"> {{ 'Users' | translate }}</a>
       <a class="nav-links" [routerLink]="['/invites']">
         {{ 'Invites' | translate }} ({{ inviteCount }})</a
