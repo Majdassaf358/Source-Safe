@@ -10,6 +10,7 @@ import { fileDetails } from '../models/file_details';
 import { nodata } from '../models/nodata';
 import { file_changes } from '../models/file-changes';
 import { ApiResponse } from '../models/ApiResponse';
+import { file_content } from '../models/file-content';
 
 @Injectable({
   providedIn: 'root',
@@ -46,9 +47,9 @@ public uploadFile(formData: any): Observable<any> {
     let url = `${environment.apiUrl}/${groupName}/view-file-details/${fileId}`;
     return this.http.get<APIarray<fileDetails>>(url);
   }
-  public viewFileDetailsContent(groupName:string,fileId?:number): Observable<ApiResponse<string>> {
+  public viewFileDetailsContent(groupName:string,fileId?:number): Observable<ApiResponse<file_content>> {
     let url = `${environment.apiUrl}/${groupName}/view-file-detail-content/${fileId}`;
-    return this.http.get<ApiResponse<string>>(url);
+    return this.http.get<ApiResponse<file_content>>(url);
   }
   public compareFiles(groupName:string,fileId?:number): Observable<APIarray<file_changes>> {
     let url = `${environment.apiUrl}/${groupName}/compare-files/${fileId}`;
